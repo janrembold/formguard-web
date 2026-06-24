@@ -1,0 +1,106 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import Icon from './Icon.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t, tList } = useTranslations(lang);
+const benefits = tList('solution.benefits');
+---
+
+<section class="solution">
+	<div class="container solution__inner">
+		<div class="solution__text">
+			<span class="solution__eyebrow">{t('site.name')}</span>
+			<h2 class="solution__title">{t('solution.title')}</h2>
+			<p class="solution__lead">{t('solution.text')}</p>
+		</div>
+
+		<ul class="solution__benefits">
+			{
+				benefits.map((benefit) => (
+					<li class="solution__benefit reveal">
+						<span class="solution__check"><Icon name="check" size={16} /></span>
+						<span>{benefit}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style lang="scss">
+	.solution {
+		@include section-padding;
+		background: var(--color-bg-alt);
+		border-block: 1px solid var(--color-border);
+	}
+
+	.solution__inner {
+		display: grid;
+		gap: var(--space-8);
+		align-items: center;
+
+		@include mq(lg) {
+			grid-template-columns: 1fr 1fr;
+			gap: var(--space-10);
+		}
+	}
+
+	.solution__eyebrow {
+		display: inline-block;
+		margin-bottom: var(--space-3);
+		font-size: var(--text-sm);
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--color-primary);
+	}
+
+	.solution__title {
+		font-size: var(--text-3xl);
+
+		@include mq(md) {
+			font-size: var(--text-4xl);
+		}
+	}
+
+	.solution__lead {
+		margin-top: var(--space-5);
+		font-size: var(--text-lg);
+		color: var(--color-text-muted);
+	}
+
+	.solution__benefits {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.solution__benefit {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-3);
+		padding: var(--space-4) var(--space-5);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		font-weight: 500;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.solution__check {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 26px;
+		height: 26px;
+		color: var(--color-text-invert);
+		background: var(--color-success);
+		border-radius: 50%;
+	}
+</style>

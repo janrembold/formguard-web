@@ -1,0 +1,584 @@
+{
+  "site": {
+    "name": "Submit API",
+    "tagline": "Sichere Formular-Zustellung – ohne Backend, ohne Spam."
+  },
+  "nav": {
+    "features": "Features",
+    "pricing": "Preise",
+    "docs": "Docs",
+    "faq": "FAQ",
+    "menu": "Menü",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "language": "Sprache",
+    "skipToContent": "Zum Inhalt springen"
+  },
+  "cta": {
+    "primary": "Kostenlos starten",
+    "secondary": "Docs ansehen",
+    "howItWorks": "So funktioniert’s",
+    "contactSales": "Vertrieb kontaktieren",
+    "viewPricing": "Alle Preise ansehen",
+    "fullFaq": "Alle Fragen ansehen",
+    "copy": "Kopieren",
+    "copied": "Kopiert!"
+  },
+  "trustLine": "30 Tage kostenlos · 300 Requests inklusive · keine Kreditkarte nötig",
+  "meta": {
+    "home": {
+      "title": "Submit API – Sichere Formular-Zustellung ohne Backend",
+      "description": "Submit API prüft jede Formular-Einsendung auf Spam, Viren und Angriffe und leitet nur saubere Daten per E-Mail an dich weiter. In Minuten startklar, ohne eigenes Backend."
+    },
+    "pricing": {
+      "title": "Preise – Submit API",
+      "description": "Transparente, nutzungsbasierte Preise. Alle Sicherheits-Features in jedem Plan. Du zahlst nur nach Requests. 30 Tage kostenlos testen."
+    },
+    "docs": {
+      "title": "Docs & Quickstart – Submit API",
+      "description": "Schnellstart in 3 Schritten: Formular-Endpoint anlegen, action-URL setzen, saubere E-Mails empfangen. Mit HTML-, fetch- und cURL-Beispielen."
+    },
+    "faq": {
+      "title": "Häufige Fragen – Submit API",
+      "description": "Antworten zu Integration, Datenschutz, Spam-Schutz, Abrechnung und Limits von Submit API."
+    },
+    "impressum": {
+      "title": "Impressum – Submit API",
+      "description": "Rechtliche Pflichtangaben zu Submit API."
+    },
+    "datenschutz": {
+      "title": "Datenschutzerklärung – Submit API",
+      "description": "Informationen zur Verarbeitung personenbezogener Daten bei Submit API."
+    },
+    "notFound": {
+      "title": "Seite nicht gefunden – Submit API",
+      "description": "Diese Seite existiert nicht."
+    }
+  },
+  "hero": {
+    "badge": "DSGVO-konform · Hosting in der EU",
+    "headline": "Sichere Formular-Zustellung – ohne Backend, ohne Spam.",
+    "subline": "Submit API prüft jede Formular-Einsendung auf Spam, Viren und Angriffe und leitet nur saubere Daten per E-Mail an dich weiter. Einfach die action-URL deines Formulars ändern – fertig.",
+    "codeCaption": "So einfach ist die Integration:",
+    "codeFilename": "kontakt.html"
+  },
+  "logoCloud": {
+    "title": "Vertraut von Entwicklern, Agenturen und Unternehmen.",
+    "badges": ["DSGVO-konform", "Hosting in der EU", "ClamAV Virus-Scan"]
+  },
+  "problem": {
+    "title": "Formulare sind ein Einfallstor.",
+    "subtitle": "Jedes offene Formular ist eine Einladung – auch für die Falschen.",
+    "cards": [
+      {
+        "title": "Spam-Flut",
+        "text": "Bots füllen dein Postfach mit Müll, bis echte Anfragen untergehen."
+      },
+      {
+        "title": "Sicherheitsrisiko",
+        "text": "Schadcode, Viren und Injection-Angriffe gelangen über Formularfelder zu dir."
+      },
+      {
+        "title": "Aufwand",
+        "text": "Ein eigenes Backend bauen, warten und absichern kostet Zeit und Nerven."
+      }
+    ]
+  },
+  "solution": {
+    "title": "Eine sichere Schicht zwischen Formular und Postfach.",
+    "text": "Submit API sitzt zwischen deinem Formular und deiner E-Mail. Jede Einsendung durchläuft eine mehrstufige Sicherheits- und Automatisierungs-Pipeline. Nur geprüfte, bereinigte Daten erreichen dein Postfach – ganz ohne eigenes Backend.",
+    "benefits": [
+      "Weniger Spam, kein Schadcode – Sicherheitsschicht vor dem Postfach.",
+      "In Minuten startklar – nur die action-URL ändern, kein Backend nötig.",
+      "Funktioniert mit jedem Formular – statisch, jedes Framework, kein Lock-in.",
+      "DSGVO-freundlich, Hosting in der EU, transparente Verarbeitung."
+    ]
+  },
+  "how": {
+    "title": "In drei Schritten startklar.",
+    "subtitle": "Keine Migration, kein Backend – nur eine geänderte URL.",
+    "steps": [
+      {
+        "title": "Action-URL eintragen",
+        "text": "Setze die Submit-API-URL als action in deinem HTML-Formular. Mehr ist nicht nötig."
+      },
+      {
+        "title": "Submit API prüft & verarbeitet",
+        "text": "Spam-, Viren- und Injection-Checks laufen automatisch, optional folgt die KI-Analyse."
+      },
+      {
+        "title": "Saubere E-Mail erhalten",
+        "text": "Nur geprüfte Daten landen in deinem Postfach – auf Wunsch zusätzlich per Webhook."
+      }
+    ]
+  },
+  "features": {
+    "title": "Alles dabei, was sichere Formulare brauchen.",
+    "subtitle": "Jedes Feature ist in jedem Plan enthalten – ohne Aufpreis.",
+    "items": [
+      {
+        "icon": "shield",
+        "title": "Spam- & Bot-Schutz",
+        "text": "Heuristik, Keyword- und Link-Analyse halten Müll zuverlässig draußen."
+      },
+      {
+        "icon": "virus",
+        "title": "Viren- & Malware-Scan",
+        "text": "Datei-Anhänge werden via ClamAV geprüft, bevor sie dich erreichen."
+      },
+      {
+        "icon": "code",
+        "title": "Injection- & XSS-Schutz",
+        "text": "Header-Injection, Script-Tags und Steuerzeichen werden neutralisiert."
+      },
+      {
+        "icon": "file",
+        "title": "Datei-Validierung",
+        "text": "Größen-, MIME- und Endungsprüfung blockt .exe, .php & Co. zuverlässig."
+      },
+      {
+        "icon": "mail",
+        "title": "Sofortige E-Mail-Zustellung",
+        "text": "Bereinigte Daten direkt ins Postfach, optional zusätzlich per Webhook."
+      },
+      {
+        "icon": "sparkles",
+        "title": "Optionale KI-Analyse",
+        "text": "Einträge automatisch kategorisieren, anreichern und vorsortieren lassen."
+      },
+      {
+        "icon": "infinity",
+        "title": "Unbegrenzte Formulare",
+        "text": "Beliebig viele Formulare und Endpoints in jedem Plan – ohne Limit."
+      },
+      {
+        "icon": "chart",
+        "title": "Statistik-Dashboard & Live-Submissions",
+        "text": "Behalte Volumen und Eingänge in Echtzeit im Blick."
+      }
+    ]
+  },
+  "security": {
+    "title": "Sicherheit ist kein Upsell – sie ist immer dabei.",
+    "subtitle": "Jede Einsendung ist erst einmal untrusted Input und durchläuft eine mehrstufige Pipeline. Alle Prüfungen sind in jedem Plan enthalten.",
+    "checks": [
+      {
+        "title": "Pflichtfeld- & Strukturprüfung",
+        "text": "Leere oder manipulierte Requests werden abgewiesen."
+      },
+      {
+        "title": "Längen- & Inhaltslimits",
+        "text": "Textfelder ~1.000 Zeichen, Body ~10.000 Zeichen – gegen Überlastung."
+      },
+      {
+        "title": "Steuerzeichen-/Encoding-Schutz",
+        "text": "NULL-Bytes und nicht druckbare Zeichen werden blockiert."
+      },
+      {
+        "title": "E-Mail-Format- & Injection-Schutz",
+        "text": "Verhindert Header-Injection wie eingeschleuste Bcc-Empfänger."
+      },
+      {
+        "title": "URL-/Link-Prüfung",
+        "text": "Nur http/https erlaubt, javascript:-URLs werden blockiert."
+      },
+      {
+        "title": "Datei-Validierung",
+        "text": "Größenlimit, MIME-/Endungs-Abgleich, Blockade von .php, .exe, .js."
+      },
+      {
+        "title": "Spam-Erkennung",
+        "text": "Zu viele Links, Spam-Begriffe, auffällige Kombinationen; CAPTCHA-, IP- & Rate-Limiting-Optionen."
+      },
+      {
+        "title": "Malware-/Virus-Scan",
+        "text": "Datei-Anhänge werden via ClamAV auf Schadsoftware geprüft."
+      },
+      {
+        "title": "XSS-, Script- & Header-Injection-Schutz",
+        "text": "Script-Tags werden entfernt, HTML maskiert, Zeilenumbrüche strikt entfernt."
+      },
+      {
+        "title": "Absender-/Umgebungsprüfung",
+        "text": "IP-, Hostname- und Referer-Abgleich gegen deine erlaubten Domains."
+      }
+    ],
+    "note": "Wichtig: Alle Sicherheits-Features sind in jedem Plan enthalten – niemals ein kostenpflichtiges Extra."
+  },
+  "audience": {
+    "title": "Gemacht für dein Setup.",
+    "subtitle": "Egal ob Code, Kundenprojekt oder erste Website.",
+    "cards": [
+      {
+        "title": "Entwickler & Teams",
+        "text": "Schnelle API-Integration, klare Snippets und Webhooks mit Retry. Kein Vendor-Lock-in, funktioniert mit jedem Stack.",
+        "points": [
+          "HTML-, fetch- & cURL-Snippets",
+          "Webhooks & Retry",
+          "Sauberes JSON-Response-Format"
+        ]
+      },
+      {
+        "title": "Agenturen & Freelancer",
+        "text": "Viele Kundenprojekte, viele Domains – ein zentrales Dashboard. Unbegrenzte Formulare und Team-Mitglieder ohne Aufpreis.",
+        "points": [
+          "Unbegrenzte Formulare & Domains",
+          "Team-Mitglieder inklusive",
+          "Effizient für viele Projekte"
+        ]
+      },
+      {
+        "title": "Website-Betreiber & KMU",
+        "text": "Kein Backend, keine Wartung. Einfach die action-URL eintragen und sichere E-Mails empfangen – ohne Fachjargon.",
+        "points": [
+          "Kein Backend nötig",
+          "In Minuten eingerichtet",
+          "Sichere E-Mails ins Postfach"
+        ]
+      }
+    ]
+  },
+  "code": {
+    "title": "Integration in einer Minute.",
+    "subtitle": "Wähle deinen Weg – das Ergebnis ist immer eine sichere, geprüfte Zustellung.",
+    "tabs": {
+      "html": "Plain HTML",
+      "fetch": "JavaScript (fetch)",
+      "curl": "cURL"
+    }
+  },
+  "pricingTeaser": {
+    "title": "Faire Preise, nur nach Nutzung.",
+    "subtitle": "Alle Features in jedem Plan – du zahlst nur nach Requests.",
+    "perMonth": "/ Monat",
+    "requestsLabel": "Requests / Monat",
+    "mostPopular": "Beliebtester Plan",
+    "select": "Auswählen",
+    "note": "Alle Sicherheits-Features inklusive. KI-Analyse optional zubuchbar."
+  },
+  "testimonials": {
+    "title": "Was Nutzer berichten.",
+    "subtitle": "Echte Mechaniken statt leerer Versprechen.",
+    "items": [
+      {
+        "quote": "Wir haben unser eigenes Formular-Backend abgeschaltet. Eine geänderte action-URL und der Spam war praktisch weg – ohne dass wir etwas warten müssen.",
+        "name": "[Platzhalter Name]",
+        "role": "Lead Developer",
+        "company": "[Platzhalter Firma]"
+      },
+      {
+        "quote": "Für unsere Kundenprojekte ist Submit API ein No-Brainer. Unbegrenzte Formulare, ein Dashboard – und die Sicherheit ist immer dabei.",
+        "name": "[Platzhalter Name]",
+        "role": "Agentur-Inhaberin",
+        "company": "[Platzhalter Agentur]"
+      },
+      {
+        "quote": "Endlich keine infizierten Anhänge mehr im Postfach. Die Einrichtung hat fünf Minuten gedauert.",
+        "name": "[Platzhalter Name]",
+        "role": "Geschäftsführer",
+        "company": "[Platzhalter KMU]"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Häufige Fragen.",
+    "subtitle": "Alles Wichtige rund um Integration, Datenschutz und Abrechnung.",
+    "items": [
+      {
+        "q": "Brauche ich ein eigenes Backend?",
+        "a": "Nein. Du änderst nur die action-URL deines Formulars auf deine Submit-API-Adresse. Es ist kein Server, keine Datenbank und kein eigener Code nötig – Submit API übernimmt Empfang, Prüfung und Zustellung."
+      },
+      {
+        "q": "Funktioniert das mit meinem Framework oder statischen Seiten?",
+        "a": "Ja. Submit API funktioniert mit jedem HTML-Formular – egal ob statische Seite, React, Vue, Svelte, WordPress oder ein anderes Framework. Auch reines statisches Hosting ohne Server ist kein Problem."
+      },
+      {
+        "q": "Wie schützt Submit API vor Spam und Viren?",
+        "a": "Jede Einsendung durchläuft eine mehrstufige Pipeline: Spam-Heuristik mit Keyword- und Link-Analyse, ClamAV-Virus-Scan für Anhänge, Injection- und XSS-Schutz, Datei-Validierung sowie Absender- und Umgebungsprüfung. Erst danach wird zugestellt."
+      },
+      {
+        "q": "Ist Submit API DSGVO-konform?",
+        "a": "Ja. Das Hosting erfolgt in der EU, die Verarbeitung ist transparent und auf die Zustellung beschränkt. Details findest du in unserer Datenschutzerklärung; einen Auftragsverarbeitungsvertrag stellen wir bereit."
+      },
+      {
+        "q": "Was kostet es und wie wird abgerechnet?",
+        "a": "Du zahlst ausschließlich nach Anzahl der eingehenden Requests pro Monat. Alle Features sind in jedem Plan enthalten; nur die KI-Analyse ist eine optionale Zusatzoption. Du startest mit 30 Tagen kostenlos und 300 Requests."
+      },
+      {
+        "q": "Was passiert, wenn ich mein Request-Limit erreiche?",
+        "a": "Dein Request-Limit ist ein festes, hartes Limit – ganz ohne zusätzlichen Puffer und ohne Pay-as-you-go. Sobald dein monatliches Kontingent erreicht ist, pausieren wir die Live-Zustellung und schlagen dir freundlich ein passendes Upgrade vor. So bleiben deine Kosten jederzeit planbar und du wirst nie von einer überraschenden Rechnung getroffen. Sobald du upgradest, läuft die Zustellung sofort weiter."
+      },
+      {
+        "q": "Kann ich jederzeit kündigen?",
+        "a": "Ja. Alle Pläne sind monatlich kündbar. Bei der Jahresabrechnung sparst du zwei Monate, bist aber nicht langfristig gebunden."
+      },
+      {
+        "q": "Unterstützt ihr Datei-Uploads?",
+        "a": "Ja. Datei-Uploads werden unterstützt und durchlaufen eine Größen-, MIME- und Endungsprüfung sowie einen ClamAV-Virus-Scan, bevor sie zugestellt werden."
+      },
+      {
+        "q": "Was macht die optionale KI-Analyse?",
+        "a": "Die KI-Analyse klassifiziert und kategorisiert Einträge, reichert sie mit Metadaten an und kann auf Wunsch Auto-Replies vorbereiten. So sortierst du Anfragen schneller vor. Sie ist optional und kostet rund 40 Prozent Aufschlag auf den gewählten Plan."
+      },
+      {
+        "q": "Wie schnell ist die Integration?",
+        "a": "In wenigen Minuten. Account anlegen, Endpoint erzeugen, die action-URL deines Formulars eintragen – fertig. Eine Schritt-für-Schritt-Anleitung findest du in den Docs."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Starte in wenigen Minuten – kostenlos.",
+    "subtitle": "30 Tage kostenlos testen, 300 Requests inklusive. Keine Kreditkarte nötig.",
+    "primary": "Kostenlos starten",
+    "secondary": "Docs ansehen"
+  },
+  "footer": {
+    "description": "Submit API ist die sichere Schnittstelle zwischen deinem Webformular und deinem Postfach – mit Spam-, Viren- und Injection-Schutz in jedem Plan.",
+    "product": "Produkt",
+    "legal": "Rechtliches",
+    "resources": "Ressourcen",
+    "links": {
+      "features": "Features",
+      "pricing": "Preise",
+      "docs": "Docs",
+      "faq": "FAQ",
+      "login": "Anmelden",
+      "impressum": "Impressum",
+      "datenschutz": "Datenschutz"
+    },
+    "madeIn": "Hosting in der EU · DSGVO-konform",
+    "copyright": "Alle Rechte vorbehalten."
+  },
+  "pricingPage": {
+    "hero": {
+      "title": "Eine Entscheidung, zwei Regler.",
+      "subtitle": "Wähle dein monatliches Request-Volumen und ob du die KI-Analyse möchtest. Den Preis siehst du sofort."
+    },
+    "calculator": {
+      "requests": "Requests / Monat",
+      "billing": "Abrechnung",
+      "monthly": "Monatlich",
+      "yearly": "Jährlich",
+      "yearlyHint": "2 Monate gratis",
+      "ai": "KI-Analyse",
+      "aiOff": "Ohne KI",
+      "aiOn": "Mit KI",
+      "aiHint": "Kategorisierung, Anreicherung & Auto-Reply (≈ +40 %)",
+      "yourPlan": "Dein Plan",
+      "perMonth": "/ Monat",
+      "perMonthYearly": "/ Monat, jährlich abgerechnet",
+      "billedYearly": "jährlich abgerechnet als {amount}",
+      "custom": "Individuell",
+      "customNote": "Ab 500.000 Requests – dedizierte Queue, SLA & individuelle Konditionen.",
+      "cta": "Kostenlos starten",
+      "ctaEnterprise": "Vertrieb kontaktieren",
+      "save": "Sparen"
+    },
+    "table": {
+      "title": "Alle Pläne im Vergleich",
+      "plan": "Plan",
+      "requests": "Requests / Monat",
+      "withoutAi": "Ohne KI",
+      "withAi": "Mit KI",
+      "idealFor": "Ideal für",
+      "month": "/ Mon.",
+      "freeNote": "Jeder Plan startet mit 30 Tagen kostenlos und 300 inklusiven Requests – ganz ohne Kreditkarte."
+    },
+    "included": {
+      "title": "In jedem Plan enthalten",
+      "subtitle": "Du zahlst nur nach Requests – die Features bekommst du alle.",
+      "items": [
+        "Vollständige Spam- & Risk-Analyse",
+        "Vollständiger Malware-/Virus-Scan (ClamAV)",
+        "Injection-/XSS-Schutz & Datei-Validierung",
+        "Unbegrenzte Formulare",
+        "Sofortiges E-Mail-Forwarding",
+        "Webhooks & Retry",
+        "Statistik-Dashboard & Live-Submissions",
+        "Team-Mitglieder ohne Aufpreis"
+      ]
+    },
+    "trial": {
+      "title": "30 Tage kostenlos testen",
+      "text": "Starte mit vollem Funktionsumfang und 300 inklusiven Requests. Keine Kreditkarte zum Start nötig.",
+      "limitTitle": "Klares, hartes Request-Limit",
+      "limitText": "Dein Kontingent ist ein festes Limit – ohne Puffer und ohne Pay-as-you-go. Ist es für den Monat aufgebraucht, pausiert die Live-Zustellung und wir schlagen dir freundlich ein passendes Upgrade vor. Das hält deine Kosten planbar; sobald du upgradest, geht es sofort weiter."
+    },
+    "addon": {
+      "title": "Optionales Add-on: KI-Analyse",
+      "text": "Das einzige kostenpflichtige Extra – ein simpler Schalter „mit / ohne KI“. Aufschlag rund 40 Prozent auf den gewählten Plan. Kategorisierung, Anreicherung und optionale Auto-Replies inklusive."
+    }
+  },
+  "docs": {
+    "hero": {
+      "title": "Quickstart: in 3 Schritten startklar",
+      "subtitle": "Lege einen Endpoint an, trage die action-URL ein und empfange geprüfte E-Mails. Kein Backend nötig."
+    },
+    "steps": {
+      "title": "Schnellstart",
+      "items": [
+        {
+          "title": "Account anlegen",
+          "text": "Registriere dich kostenlos im Dashboard. Keine Kreditkarte nötig, 30 Tage und 300 Requests inklusive."
+        },
+        {
+          "title": "Formular-Endpoint anlegen",
+          "text": "Erstelle im Dashboard einen Endpoint und hinterlege die Empfänger-E-Mail. Du erhältst eine eindeutige Form-ID."
+        },
+        {
+          "title": "action-URL einsetzen",
+          "text": "Trage die Submit-API-URL mit deiner Form-ID als action in dein Formular ein – fertig."
+        }
+      ]
+    },
+    "examples": {
+      "title": "Code-Beispiele",
+      "subtitle": "Drei Wege, ein Ergebnis. Ersetze DEINE_FORM_ID durch deine echte ID.",
+      "htmlTab": "HTML",
+      "fetchTab": "JavaScript (fetch)",
+      "curlTab": "cURL"
+    },
+    "responses": {
+      "title": "Antwort- & Statuscodes",
+      "note": "Beispielhafte Werte – passe sie nach deinem finalen API-Vertrag an.",
+      "colCode": "Status",
+      "colMeaning": "Bedeutung",
+      "colBody": "Antwort (Beispiel)",
+      "rows": [
+        {
+          "code": "200 OK",
+          "meaning": "Erfolgreich empfangen, geprüft und zugestellt.",
+          "body": "{ \"status\": \"delivered\", \"id\": \"sub_123\" }"
+        },
+        {
+          "code": "202 Accepted",
+          "meaning": "Angenommen, Zustellung läuft asynchron (z. B. mit KI-Analyse).",
+          "body": "{ \"status\": \"queued\", \"id\": \"sub_124\" }"
+        },
+        {
+          "code": "422 Unprocessable",
+          "meaning": "Validierungsfehler – z. B. Pflichtfeld fehlt oder Datei abgelehnt.",
+          "body": "{ \"error\": \"validation_failed\", \"fields\": [\"email\"] }"
+        },
+        {
+          "code": "429 Too Many Requests",
+          "meaning": "Rate-Limit erreicht – bitte später erneut versuchen.",
+          "body": "{ \"error\": \"rate_limited\" }"
+        },
+        {
+          "code": "451 Rejected",
+          "meaning": "Als Spam oder Schadcode eingestuft und abgewiesen.",
+          "body": "{ \"error\": \"rejected\", \"reason\": \"spam\" }"
+        }
+      ]
+    },
+    "notes": {
+      "title": "Gut zu wissen",
+      "items": [
+        {
+          "title": "Datei-Uploads",
+          "text": "Nutze enctype=\"multipart/form-data\". Anhänge werden auf Größe, MIME-Typ, Endung und Viren (ClamAV) geprüft."
+        },
+        {
+          "title": "Webhooks & Retry",
+          "text": "Zusätzlich zur E-Mail kannst du einen Webhook hinterlegen. Fehlgeschlagene Zustellungen werden automatisch erneut versucht."
+        },
+        {
+          "title": "Limits",
+          "text": "Textfelder sind auf rund 1.000 Zeichen, der Body auf rund 10.000 Zeichen begrenzt. Längere Inhalte werden abgewiesen."
+        },
+        {
+          "title": "Optionale KI-Analyse",
+          "text": "Aktiviere die KI-Analyse im Dashboard, um Einsendungen automatisch zu kategorisieren, anzureichern und vorzusortieren."
+        }
+      ]
+    }
+  },
+  "legal": {
+    "draftNotice": "Dies ist ein Muster-Gerüst und muss vor Veröffentlichung rechtlich geprüft und vervollständigt werden.",
+    "impressum": {
+      "title": "Impressum",
+      "sections": [
+        {
+          "heading": "Angaben gemäß § 5 DDG",
+          "body": "[Firmenname]\n[Straße und Hausnummer]\n[PLZ Ort]\n[Land]"
+        },
+        {
+          "heading": "Vertreten durch",
+          "body": "[Vertretungsberechtigte Person / Geschäftsführer]"
+        },
+        {
+          "heading": "Kontakt",
+          "body": "Telefon: [Telefonnummer]\nE-Mail: [E-Mail]"
+        },
+        {
+          "heading": "Registereintrag",
+          "body": "Eintragung im Handelsregister.\nRegistergericht: [Registergericht]\nRegisternummer: [Registernummer]"
+        },
+        {
+          "heading": "Umsatzsteuer-ID",
+          "body": "Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:\n[USt-IdNr.]"
+        },
+        {
+          "heading": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+          "body": "[Verantwortlicher]\n[Adresse]"
+        },
+        {
+          "heading": "Streitschlichtung",
+          "body": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+        }
+      ]
+    },
+    "datenschutz": {
+      "title": "Datenschutzerklärung",
+      "sections": [
+        {
+          "heading": "1. Verantwortlicher",
+          "body": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:\n[Firmenname]\n[Adresse]\nE-Mail: [E-Mail]"
+        },
+        {
+          "heading": "2. Welche Daten wir verarbeiten",
+          "body": "Wir verarbeiten Daten, die du uns aktiv übermittelst (z. B. bei Registrierung oder über Formulare) sowie technisch notwendige Daten wie IP-Adresse, Zeitstempel und Browserinformationen. Über Submit API übermittelte Formulardaten werden ausschließlich zum Zweck der Sicherheitsprüfung und Zustellung verarbeitet."
+        },
+        {
+          "heading": "3. Zwecke und Rechtsgrundlagen",
+          "body": "Die Verarbeitung erfolgt zur Bereitstellung des Dienstes (Art. 6 Abs. 1 lit. b DSGVO), zur Wahrung berechtigter Interessen wie Sicherheit und Spam-Abwehr (Art. 6 Abs. 1 lit. f DSGVO) sowie zur Erfüllung rechtlicher Pflichten (Art. 6 Abs. 1 lit. c DSGVO)."
+        },
+        {
+          "heading": "4. Auftragsverarbeitung",
+          "body": "Soweit wir Daten in deinem Auftrag verarbeiten, schließen wir einen Auftragsverarbeitungsvertrag (AVV) gemäß Art. 28 DSGVO. [Details und Unterauftragsverarbeiter ergänzen.]"
+        },
+        {
+          "heading": "5. Hosting & Speicherort",
+          "body": "Unsere Server und die Verarbeitung der Formulardaten befinden sich in der Europäischen Union. [Hosting-Anbieter und Standort konkretisieren.]"
+        },
+        {
+          "heading": "6. Authentifizierung",
+          "body": "Für die Anmeldung am Dashboard nutzen wir [Auth0/Authentifizierungsdienst]. Dabei werden Anmeldedaten gemäß den Vorgaben des Anbieters verarbeitet. [Anbieter und Datenschutzhinweise ergänzen.]"
+        },
+        {
+          "heading": "7. Cookies & Analyse",
+          "body": "Wir setzen nur technisch notwendige Cookies. Für die Reichweitenmessung nutzen wir – sofern aktiviert – ein datenschutzfreundliches Analyse-Tool ([z. B. Plausible]) ohne Cookies und ohne Erfassung personenbezogener Profile."
+        },
+        {
+          "heading": "8. Speicherdauer",
+          "body": "Wir speichern personenbezogene Daten nur so lange, wie es für die genannten Zwecke erforderlich ist oder gesetzliche Aufbewahrungsfristen es vorschreiben."
+        },
+        {
+          "heading": "9. Deine Rechte",
+          "body": "Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Außerdem kannst du dich bei einer Aufsichtsbehörde beschweren."
+        },
+        {
+          "heading": "10. Kontakt",
+          "body": "Bei Fragen zum Datenschutz erreichst du uns unter: [E-Mail]. [Sofern bestellt: Kontaktdaten des Datenschutzbeauftragten ergänzen.]"
+        }
+      ]
+    }
+  },
+  "notFound": {
+    "title": "Diese Seite gibt es nicht.",
+    "subtitle": "Vielleicht ist der Link veraltet oder es hat sich ein Tippfehler eingeschlichen.",
+    "cta": "Zurück zur Startseite",
+    "secondary": "Zu den Docs"
+  }
+}

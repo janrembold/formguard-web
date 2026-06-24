@@ -1,0 +1,99 @@
+---
+import type { Lang } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../Icon.astro';
+
+interface Props {
+	lang: Lang;
+	doc: 'impressum' | 'datenschutz';
+}
+
+const { lang, doc } = Astro.props;
+const { t, tObj } = useTranslations(lang);
+
+const data = tObj<{ title: string; sections: { heading: string; body: string }[] }>(
+	`legal.${doc}`,
+);
+const metaKey = doc === 'impressum' ? 'meta.impressum' : 'meta.datenschutz';
+---
+
+<BaseLayout
+	lang={lang}
+	title={t(`${metaKey}.title`)}
+	description={t(`${metaKey}.description`)}
+	path={`/${doc}`}
+>
+	<article class="legal">
+		<div class="container legal__inner">
+			<h1 class="legal__title">{data.title}</h1>
+
+			<p class="legal__notice">
+				<Icon name="lock" size={18} />
+				{t('legal.draftNotice')}
+			</p>
+
+			{
+				data.sections.map((section) => (
+					<section class="legal__section">
+						<h2>{section.heading}</h2>
+						{section.body.split('\n').map((line) => (
+							<p>{line}</p>
+						))}
+					</section>
+				))
+			}
+		</div>
+	</article>
+</BaseLayout>
+
+<style lang="scss">
+	.legal {
+		padding-block: var(--space-10) var(--space-12);
+	}
+
+	.legal__inner {
+		max-width: 760px;
+	}
+
+	.legal__title {
+		font-size: var(--text-4xl);
+		margin-bottom: var(--space-5);
+	}
+
+	.legal__notice {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-3);
+		padding: var(--space-4) var(--space-5);
+		margin-bottom: var(--space-8);
+		font-weight: 600;
+		color: var(--color-warning);
+		background: #fffbeb;
+		border: 1px solid #fde68a;
+		border-radius: var(--radius-md);
+
+		:global(svg) {
+			flex-shrink: 0;
+			margin-top: 2px;
+		}
+	}
+
+	.legal__section {
+		margin-bottom: var(--space-7);
+
+		h2 {
+			font-size: var(--text-xl);
+			margin-bottom: var(--space-3);
+		}
+
+		p {
+			color: var(--color-text-muted);
+			margin-bottom: var(--space-1);
+
+			&:empty {
+				display: none;
+			}
+		}
+	}
+</style>

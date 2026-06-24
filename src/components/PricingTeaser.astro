@@ -1,0 +1,174 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations, localizePath } from '../i18n/utils';
+import { plans } from '../data/plans';
+import { LOGIN_URL } from '../data/constants';
+import SectionHeading from './SectionHeading.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t } = useTranslations(lang);
+
+// Teaser shows the 4 paid plans (Starter, Growth, Business, Scale).
+const teaserPlans = plans.filter((p) => !p.enterprise);
+const numberFmt = new Intl.NumberFormat(lang === 'de' ? 'de-DE' : 'en-US');
+---
+
+<section class="pteaser">
+	<div class="container">
+		<SectionHeading
+			eyebrow={t('nav.pricing')}
+			title={t('pricingTeaser.title')}
+			subtitle={t('pricingTeaser.subtitle')}
+		/>
+
+		<div class="pteaser__grid">
+			{
+				teaserPlans.map((plan) => (
+					<article class:list={['pteaser__card', { 'is-popular': plan.popular }]}>
+						{plan.popular && <span class="pteaser__badge">{t('pricingTeaser.mostPopular')}</span>}
+						<h3 class="pteaser__name">{plan.name}</h3>
+						<p class="pteaser__price">
+							<span class="pteaser__amount">{plan.priceMonthly}&nbsp;€</span>
+							<span class="pteaser__per">{t('pricingTeaser.perMonth')}</span>
+						</p>
+						<p class="pteaser__requests">
+							{numberFmt.format(plan.requests)} {t('pricingTeaser.requestsLabel')}
+						</p>
+						<Button
+							href={LOGIN_URL}
+							variant={plan.popular ? 'primary' : 'secondary'}
+							size="md"
+							external
+							class="pteaser__cta"
+						>
+							{t('cta.primary')}
+						</Button>
+					</article>
+				))
+			}
+		</div>
+
+		<p class="pteaser__note">
+			<Icon name="check" size={16} />
+			{t('pricingTeaser.note')}
+		</p>
+
+		<div class="pteaser__more">
+			<Button href={localizePath('/pricing', lang)} variant="ghost" size="lg">
+				{t('cta.viewPricing')}
+			</Button>
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.pteaser {
+		@include section-padding;
+	}
+
+	.pteaser__grid {
+		display: grid;
+		gap: var(--space-5);
+		grid-template-columns: 1fr;
+
+		@include mq(sm) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include mq(lg) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	.pteaser__card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: var(--space-6);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+
+		&.is-popular {
+			border-color: var(--color-primary);
+			box-shadow: var(--shadow-md);
+
+			@include mq(lg) {
+				transform: scale(1.03);
+			}
+		}
+	}
+
+	.pteaser__badge {
+		position: absolute;
+		top: -12px;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 4px 12px;
+		font-size: var(--text-xs);
+		font-weight: 700;
+		color: var(--color-text-invert);
+		background: var(--color-primary);
+		border-radius: var(--radius-pill);
+		white-space: nowrap;
+	}
+
+	.pteaser__name {
+		font-size: var(--text-lg);
+		color: var(--color-text-muted);
+	}
+
+	.pteaser__price {
+		display: flex;
+		align-items: baseline;
+		gap: var(--space-2);
+		margin-top: var(--space-3);
+	}
+
+	.pteaser__amount {
+		font-size: var(--text-3xl);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+
+	.pteaser__per {
+		font-size: var(--text-sm);
+		color: var(--color-text-subtle);
+	}
+
+	.pteaser__requests {
+		margin-top: var(--space-2);
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+	}
+
+	.pteaser__cta {
+		margin-top: var(--space-5);
+		width: 100%;
+	}
+
+	.pteaser__note {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		margin-top: var(--space-7);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-text-muted);
+
+		:global(svg) {
+			color: var(--color-success);
+		}
+	}
+
+	.pteaser__more {
+		margin-top: var(--space-4);
+	}
+</style>

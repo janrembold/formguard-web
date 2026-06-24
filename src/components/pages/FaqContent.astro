@@ -1,0 +1,37 @@
+---
+import type { Lang } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FaqAccordion from '../FaqAccordion.astro';
+import CTASection from '../CTASection.astro';
+import { organizationLd, faqPageLd } from '../../data/jsonld';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t, tObj } = useTranslations(lang);
+
+const faqItems = tObj<{ q: string; a: string }[]>('faq.items');
+const jsonLd = [organizationLd(), faqPageLd(faqItems)];
+---
+
+<BaseLayout
+	lang={lang}
+	title={t('meta.faq.title')}
+	description={t('meta.faq.description')}
+	path="/faq"
+	jsonLd={jsonLd}
+>
+	<div class="faq-page-top">
+		<FaqAccordion lang={lang} />
+	</div>
+	<CTASection lang={lang} />
+</BaseLayout>
+
+<style lang="scss">
+	.faq-page-top {
+		padding-top: var(--space-6);
+	}
+</style>

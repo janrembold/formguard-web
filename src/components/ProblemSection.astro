@@ -1,0 +1,83 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+interface Card {
+	title: string;
+	text: string;
+}
+
+const { lang } = Astro.props;
+const { t, tObj } = useTranslations(lang);
+const cards = tObj<Card[]>('problem.cards');
+const icons = ['mail', 'shield', 'code'];
+---
+
+<section class="problem">
+	<div class="container">
+		<SectionHeading title={t('problem.title')} subtitle={t('problem.subtitle')} />
+
+		<div class="problem__grid">
+			{
+				cards.map((card, i) => (
+					<article class="problem__card reveal">
+						<span class="problem__icon">
+							<Icon name={icons[i] ?? 'shield'} size={22} />
+						</span>
+						<h3 class="problem__card-title">{card.title}</h3>
+						<p class="problem__card-text">{card.text}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.problem {
+		@include section-padding;
+	}
+
+	.problem__grid {
+		display: grid;
+		gap: var(--space-5);
+		grid-template-columns: 1fr;
+
+		@include mq(md) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.problem__card {
+		@include card;
+		padding: var(--space-6);
+	}
+
+	.problem__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		color: var(--color-danger);
+		background: #fef2f2;
+		border-radius: var(--radius-md);
+		margin-bottom: var(--space-4);
+	}
+
+	.problem__card-title {
+		font-size: var(--text-xl);
+		margin-bottom: var(--space-2);
+	}
+
+	.problem__card-text {
+		color: var(--color-text-muted);
+		font-size: var(--text-base);
+	}
+</style>

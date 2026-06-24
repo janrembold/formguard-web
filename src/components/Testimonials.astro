@@ -1,0 +1,115 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+interface Testimonial {
+	quote: string;
+	name: string;
+	role: string;
+	company: string;
+}
+
+const { lang } = Astro.props;
+const { t, tObj } = useTranslations(lang);
+const items = tObj<Testimonial[]>('testimonials.items');
+---
+
+<section class="testimonials">
+	<div class="container">
+		<SectionHeading title={t('testimonials.title')} subtitle={t('testimonials.subtitle')} />
+
+		<div class="testimonials__grid">
+			{
+				items.map((item) => (
+					<figure class="testimonials__card reveal">
+						<blockquote class="testimonials__quote">“{item.quote}”</blockquote>
+						<figcaption class="testimonials__author">
+							<span class="testimonials__avatar" aria-hidden="true">
+								{item.role.charAt(0)}
+							</span>
+							<span class="testimonials__meta">
+								<span class="testimonials__name">{item.name}</span>
+								<span class="testimonials__role">
+									{item.role} · {item.company}
+								</span>
+							</span>
+						</figcaption>
+					</figure>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.testimonials {
+		@include section-padding;
+	}
+
+	.testimonials__grid {
+		display: grid;
+		gap: var(--space-5);
+		grid-template-columns: 1fr;
+
+		@include mq(md) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.testimonials__card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-5);
+		padding: var(--space-6);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.testimonials__quote {
+		margin: 0;
+		font-size: var(--text-lg);
+		line-height: var(--leading-snug);
+		color: var(--color-text);
+	}
+
+	.testimonials__author {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		margin-top: auto;
+	}
+
+	.testimonials__avatar {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		font-weight: 700;
+		color: var(--color-text-invert);
+		background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+		border-radius: 50%;
+	}
+
+	.testimonials__meta {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.testimonials__name {
+		font-weight: 700;
+		font-size: var(--text-sm);
+	}
+
+	.testimonials__role {
+		font-size: var(--text-xs);
+		color: var(--color-text-subtle);
+	}
+</style>

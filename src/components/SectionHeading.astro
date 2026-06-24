@@ -1,0 +1,53 @@
+---
+interface Props {
+	eyebrow?: string;
+	title: string;
+	subtitle?: string;
+	align?: 'center' | 'left';
+	class?: string;
+}
+
+const { eyebrow, title, subtitle, align = 'center', class: className } = Astro.props;
+---
+
+<div class:list={['heading', `heading--${align}`, className]}>
+	{eyebrow && <span class="heading__eyebrow">{eyebrow}</span>}
+	<h2 class="heading__title">{title}</h2>
+	{subtitle && <p class="heading__subtitle">{subtitle}</p>}
+</div>
+
+<style lang="scss">
+	.heading {
+		max-width: 720px;
+		margin-bottom: var(--space-8);
+	}
+
+	.heading--center {
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.heading__eyebrow {
+		display: inline-block;
+		margin-bottom: var(--space-3);
+		font-size: var(--text-sm);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--color-primary);
+	}
+
+	.heading__title {
+		font-size: var(--text-3xl);
+
+		@include mq(md) {
+			font-size: var(--text-4xl);
+		}
+	}
+
+	.heading__subtitle {
+		margin-top: var(--space-4);
+		font-size: var(--text-lg);
+		color: var(--color-text-muted);
+	}
+</style>

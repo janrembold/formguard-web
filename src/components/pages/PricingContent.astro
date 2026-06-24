@@ -1,0 +1,340 @@
+---
+import type { Lang } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../SectionHeading.astro';
+import FaqAccordion from '../FaqAccordion.astro';
+import CTASection from '../CTASection.astro';
+import Icon from '../Icon.astro';
+import PricingCalculator from '../pricing/PricingCalculator.tsx';
+import { plans, priceWithAi } from '../../data/plans';
+import { LOGIN_URL } from '../../data/constants';
+import { organizationLd, productOffersLd, faqPageLd } from '../../data/jsonld';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t, tList, tObj } = useTranslations(lang);
+
+const numberFmt = new Intl.NumberFormat(lang === 'de' ? 'de-DE' : 'en-US');
+const includedItems = tList('pricingPage.included.items');
+
+const idealForKeys: Record<string, string> = {
+	starter: lang === 'de' ? 'Einzelne Websites, Portfolios, Landingpages' : 'Single sites, portfolios, landing pages',
+	growth: lang === 'de' ? 'Wachsende Sites, mehrere Formulare' : 'Growing sites, multiple forms',
+	business: lang === 'de' ? 'Agenturen, Shops, kontaktstarke Seiten' : 'Agencies, shops, contact-heavy sites',
+	scale: lang === 'de' ? 'Hohe Volumina, viele Mandanten/Domains' : 'High volumes, many tenants/domains',
+	enterprise: lang === 'de' ? 'Dedizierte Queue, SLA, individuelle Konditionen' : 'Dedicated queue, SLA, custom terms',
+};
+
+const calcStrings = {
+	...tObj<Record<string, string>>('pricingPage.calculator'),
+	mostPopular: t('pricingTeaser.mostPopular'),
+};
+
+const faqItems = tObj<{ q: string; a: string }[]>('faq.items').slice(0, 6);
+const jsonLd = [organizationLd(), productOffersLd(lang), faqPageLd(faqItems)];
+---
+
+<BaseLayout
+	lang={lang}
+	title={t('meta.pricing.title')}
+	description={t('meta.pricing.description')}
+	path="/pricing"
+	jsonLd={jsonLd}
+>
+	<section class="pricing-hero">
+		<div class="container">
+			<SectionHeading
+				eyebrow={t('nav.pricing')}
+				title={t('pricingPage.hero.title')}
+				subtitle={t('pricingPage.hero.subtitle')}
+			/>
+			<div class="pricing-hero__calc">
+				<PricingCalculator
+					client:visible
+					lang={lang}
+					loginUrl={LOGIN_URL}
+					strings={calcStrings as any}
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section class="pricing-table-sec">
+		<div class="container">
+			<SectionHeading title={t('pricingPage.table.title')} />
+			<div class="pricing-table-wrap">
+				<table class="pricing-table">
+					<thead>
+						<tr>
+							<th scope="col">{t('pricingPage.table.plan')}</th>
+							<th scope="col">{t('pricingPage.table.requests')}</th>
+							<th scope="col">{t('pricingPage.table.withoutAi')}</th>
+							<th scope="col">{t('pricingPage.table.withAi')}</th>
+							<th scope="col">{t('pricingPage.table.idealFor')}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							plans.map((plan) => (
+								<tr class={plan.popular ? 'is-popular' : undefined}>
+									<th scope="row">
+										{plan.name}
+										{plan.popular && (
+											<span class="pricing-table__badge">{t('pricingTeaser.mostPopular')}</span>
+										)}
+									</th>
+									<td>
+										{plan.enterprise
+											? `${numberFmt.format(plan.requests)}+`
+											: numberFmt.format(plan.requests)}
+									</td>
+									<td>
+										{plan.priceMonthly === null
+											? t('pricingPage.calculator.custom')
+											: `${plan.priceMonthly} €${t('pricingPage.table.month')}`}
+									</td>
+									<td>
+										{plan.priceMonthly === null
+											? t('pricingPage.calculator.custom')
+											: `${priceWithAi(plan.priceMonthly, true)} €${t('pricingPage.table.month')}`}
+									</td>
+									<td class="pricing-table__ideal">{idealForKeys[plan.id]}</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+			<p class="pricing-table__note">{t('pricingPage.table.freeNote')}</p>
+		</div>
+	</section>
+
+	<section class="included">
+		<div class="container included__inner">
+			<div class="included__head">
+				<h2 class="included__title">{t('pricingPage.included.title')}</h2>
+				<p class="included__subtitle">{t('pricingPage.included.subtitle')}</p>
+			</div>
+			<ul class="included__grid">
+				{
+					includedItems.map((item) => (
+						<li class="included__item">
+							<Icon name="check" size={18} />
+							{item}
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<section class="pricing-extra">
+		<div class="container pricing-extra__grid">
+			<article class="pricing-extra__card">
+				<span class="pricing-extra__icon"><Icon name="sparkles" size={22} /></span>
+				<h3>{t('pricingPage.trial.title')}</h3>
+				<p>{t('pricingPage.trial.text')}</p>
+				<h4>{t('pricingPage.trial.limitTitle')}</h4>
+				<p>{t('pricingPage.trial.limitText')}</p>
+			</article>
+			<article class="pricing-extra__card">
+				<span class="pricing-extra__icon"><Icon name="chart" size={22} /></span>
+				<h3>{t('pricingPage.addon.title')}</h3>
+				<p>{t('pricingPage.addon.text')}</p>
+			</article>
+		</div>
+	</section>
+
+	<FaqAccordion lang={lang} limit={6} showMore background="alt" />
+	<CTASection lang={lang} />
+</BaseLayout>
+
+<style lang="scss">
+	.pricing-hero {
+		padding-block: var(--space-10) var(--space-12);
+		background:
+			radial-gradient(60% 60% at 50% 0%, var(--color-primary-soft) 0%, transparent 70%),
+			var(--color-bg);
+	}
+
+	.pricing-hero__calc {
+		max-width: 980px;
+		margin-inline: auto;
+	}
+
+	.pricing-table-sec {
+		@include section-padding;
+	}
+
+	.pricing-table-wrap {
+		overflow-x: auto;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.pricing-table {
+		width: 100%;
+		border-collapse: collapse;
+		min-width: 720px;
+		background: var(--color-surface);
+
+		th,
+		td {
+			padding: var(--space-4) var(--space-5);
+			text-align: left;
+			border-bottom: 1px solid var(--color-border);
+			font-size: var(--text-sm);
+		}
+
+		thead th {
+			font-size: var(--text-xs);
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: var(--color-text-subtle);
+			background: var(--color-bg-alt);
+		}
+
+		tbody th {
+			font-weight: 700;
+			font-size: var(--text-base);
+		}
+
+		tbody tr:last-child th,
+		tbody tr:last-child td {
+			border-bottom: none;
+		}
+
+		tr.is-popular {
+			background: var(--color-primary-soft);
+		}
+	}
+
+	.pricing-table__badge {
+		display: inline-block;
+		margin-left: var(--space-2);
+		padding: 2px 8px;
+		font-size: 0.65rem;
+		font-weight: 700;
+		color: var(--color-text-invert);
+		background: var(--color-primary);
+		border-radius: var(--radius-pill);
+		vertical-align: middle;
+	}
+
+	.pricing-table__ideal {
+		color: var(--color-text-muted);
+	}
+
+	.pricing-table__note {
+		margin-top: var(--space-4);
+		text-align: center;
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+	}
+
+	.included {
+		@include section-padding;
+		background: var(--color-bg-alt);
+		border-block: 1px solid var(--color-border);
+	}
+
+	.included__inner {
+		display: grid;
+		gap: var(--space-8);
+
+		@include mq(lg) {
+			grid-template-columns: 1fr 1.4fr;
+			align-items: center;
+		}
+	}
+
+	.included__title {
+		font-size: var(--text-3xl);
+	}
+
+	.included__subtitle {
+		margin-top: var(--space-4);
+		font-size: var(--text-lg);
+		color: var(--color-text-muted);
+	}
+
+	.included__grid {
+		display: grid;
+		gap: var(--space-3);
+
+		@include mq(sm) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.included__item {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		padding: var(--space-4);
+		font-weight: 500;
+		font-size: var(--text-sm);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+
+		:global(svg) {
+			color: var(--color-success);
+			flex-shrink: 0;
+		}
+	}
+
+	.pricing-extra {
+		@include section-padding;
+	}
+
+	.pricing-extra__grid {
+		display: grid;
+		gap: var(--space-5);
+
+		@include mq(md) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.pricing-extra__card {
+		padding: var(--space-6);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+
+		h3 {
+			font-size: var(--text-xl);
+			margin-bottom: var(--space-2);
+		}
+
+		h4 {
+			margin-top: var(--space-5);
+			font-size: var(--text-base);
+			margin-bottom: var(--space-2);
+		}
+
+		p {
+			color: var(--color-text-muted);
+			font-size: var(--text-sm);
+		}
+	}
+
+	.pricing-extra__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 46px;
+		height: 46px;
+		color: var(--color-primary);
+		background: var(--color-primary-soft);
+		border-radius: var(--radius-md);
+		margin-bottom: var(--space-4);
+	}
+</style>

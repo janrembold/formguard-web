@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40" fill="none">
+	<rect width="32" height="32" y="4" rx="8" fill="url(#g)" />
+	<path d="M10 20.5l3.8 3.8L23 15" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+	<text x="44" y="27" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.5" fill="#0f172a">Submit API</text>
+	<defs>
+		<linearGradient id="g" x1="0" y1="4" x2="32" y2="36" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#4f46e5" />
+			<stop offset="1" stop-color="#06b6d4" />
+		</linearGradient>
+	</defs>
+</svg>

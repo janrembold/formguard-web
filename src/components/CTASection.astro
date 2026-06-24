@@ -1,0 +1,83 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import { LOGIN_URL } from '../data/constants';
+import { localizePath } from '../i18n/utils';
+import Button from './Button.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t } = useTranslations(lang);
+---
+
+<section class="cta">
+	<div class="container">
+		<div class="cta__card reveal">
+			<h2 class="cta__title">{t('finalCta.title')}</h2>
+			<p class="cta__subtitle">{t('finalCta.subtitle')}</p>
+			<div class="cta__actions">
+				<Button href={LOGIN_URL} variant="primary" size="lg" external>{t('finalCta.primary')}</Button>
+				<Button href={localizePath('/docs', lang)} variant="ghost" size="lg">{t('finalCta.secondary')}</Button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.cta {
+		@include section-padding;
+	}
+
+	.cta__card {
+		position: relative;
+		overflow: hidden;
+		padding: var(--space-10) var(--space-6);
+		text-align: center;
+		color: #fff;
+		background:
+			radial-gradient(80% 120% at 50% 0%, rgba(6, 182, 212, 0.35) 0%, transparent 60%),
+			linear-gradient(135deg, var(--color-primary), var(--color-primary-active));
+		border-radius: var(--radius-xl);
+		box-shadow: var(--shadow-lg);
+
+		@include mq(md) {
+			padding: var(--space-12) var(--space-8);
+		}
+	}
+
+	.cta__title {
+		font-size: var(--text-3xl);
+		color: #fff;
+
+		@include mq(md) {
+			font-size: var(--text-4xl);
+		}
+	}
+
+	.cta__subtitle {
+		max-width: 40rem;
+		margin: var(--space-4) auto 0;
+		font-size: var(--text-lg);
+		color: rgba(255, 255, 255, 0.85);
+	}
+
+	.cta__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-3);
+		margin-top: var(--space-7);
+
+		:global(.btn--ghost) {
+			color: #fff;
+			border-color: rgba(255, 255, 255, 0.4);
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.12);
+			}
+		}
+	}
+</style>

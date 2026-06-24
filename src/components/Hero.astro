@@ -1,0 +1,134 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import { LOGIN_URL } from '../data/constants';
+import { heroSnippet } from '../data/snippets';
+import Button from './Button.astro';
+import CodeSnippet from './CodeSnippet.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t } = useTranslations(lang);
+---
+
+<section class="hero">
+	<div class="container hero__inner">
+		<div class="hero__content">
+			<span class="hero__badge"><Icon name="lock" size={15} />{t('hero.badge')}</span>
+			<h1 class="hero__headline">{t('hero.headline')}</h1>
+			<p class="hero__subline">{t('hero.subline')}</p>
+
+			<div class="hero__actions">
+				<Button href={LOGIN_URL} variant="primary" size="lg" external>{t('cta.primary')}</Button>
+				<Button href="#how" variant="secondary" size="lg">{t('cta.howItWorks')}</Button>
+			</div>
+
+			<p class="hero__trust"><Icon name="check" size={16} />{t('trustLine')}</p>
+		</div>
+
+		<div class="hero__visual">
+			<p class="hero__code-caption">{t('hero.codeCaption')}</p>
+			<CodeSnippet
+				code={heroSnippet}
+				lang="html"
+				filename={t('hero.codeFilename')}
+				copyLabel={t('cta.copy')}
+				copiedLabel={t('cta.copied')}
+			/>
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.hero {
+		position: relative;
+		overflow: hidden;
+		padding-block: var(--space-10) var(--space-12);
+		background:
+			radial-gradient(60% 60% at 50% 0%, var(--color-primary-soft) 0%, transparent 70%),
+			var(--color-bg);
+
+		@include mq(md) {
+			padding-block: var(--space-12) var(--space-16);
+		}
+	}
+
+	.hero__inner {
+		display: grid;
+		gap: var(--space-8);
+		align-items: center;
+
+		@include mq(lg) {
+			grid-template-columns: 1.05fr 0.95fr;
+			gap: var(--space-10);
+		}
+	}
+
+	.hero__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		padding: 6px 14px;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-primary);
+		background: var(--color-surface);
+		border: 1px solid var(--color-primary-soft-2);
+		border-radius: var(--radius-pill);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.hero__headline {
+		margin-top: var(--space-5);
+		font-size: var(--text-4xl);
+		line-height: 1.08;
+
+		@include mq(md) {
+			font-size: var(--text-5xl);
+		}
+	}
+
+	.hero__subline {
+		margin-top: var(--space-5);
+		max-width: 36rem;
+		font-size: var(--text-lg);
+		color: var(--color-text-muted);
+	}
+
+	.hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-7);
+	}
+
+	.hero__trust {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		margin-top: var(--space-5);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-text-subtle);
+
+		:global(svg) {
+			color: var(--color-success);
+			flex-shrink: 0;
+		}
+	}
+
+	.hero__visual {
+		min-width: 0;
+	}
+
+	.hero__code-caption {
+		margin-bottom: var(--space-3);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-text-subtle);
+	}
+</style>

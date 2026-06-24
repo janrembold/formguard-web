@@ -1,0 +1,74 @@
+---
+import type { Lang } from '../i18n/utils';
+import { localizePath, languages } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+	/** Locale-neutral route used to build the switched path. */
+	path: string;
+	compact?: boolean;
+}
+
+const { lang, path, compact = false } = Astro.props;
+
+const targets = (Object.keys(languages) as Lang[]).map((code) => ({
+	code,
+	label: code.toUpperCase(),
+	name: languages[code],
+	href: localizePath(path, code),
+	current: code === lang,
+}));
+---
+
+<div class:list={['lang-switch', { 'lang-switch--compact': compact }]} role="group" aria-label="Sprache / Language">
+	{
+		targets.map((target) => (
+			<a
+				href={target.href}
+				class:list={['lang-switch__link', { 'is-active': target.current }]}
+				hreflang={target.code}
+				aria-current={target.current ? 'true' : undefined}
+				lang={target.code}
+			>
+				{target.label}
+			</a>
+		))
+	}
+</div>
+
+<style lang="scss">
+	.lang-switch {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		padding: 3px;
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+	}
+
+	.lang-switch__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 38px;
+		padding: 4px 10px;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-text-muted);
+		border-radius: var(--radius-pill);
+		text-decoration: none;
+		transition: background var(--transition-fast), color var(--transition-fast);
+
+		&:hover {
+			color: var(--color-text);
+			text-decoration: none;
+		}
+
+		&.is-active {
+			background: var(--color-surface);
+			color: var(--color-primary);
+			box-shadow: var(--shadow-sm);
+		}
+	}
+</style>

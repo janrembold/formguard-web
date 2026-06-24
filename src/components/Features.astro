@@ -1,0 +1,108 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+interface Feature {
+	icon: string;
+	title: string;
+	text: string;
+}
+
+const { lang } = Astro.props;
+const { t, tObj } = useTranslations(lang);
+const items = tObj<Feature[]>('features.items');
+---
+
+<section class="features" id="features">
+	<div class="container">
+		<SectionHeading
+			eyebrow={t('nav.features')}
+			title={t('features.title')}
+			subtitle={t('features.subtitle')}
+		/>
+
+		<div class="features__grid">
+			{
+				items.map((feature) => (
+					<article class="features__card reveal">
+						<span class="features__icon">
+							<Icon name={feature.icon} size={22} />
+						</span>
+						<h3 class="features__title">{feature.title}</h3>
+						<p class="features__text">{feature.text}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.features {
+		@include section-padding;
+		background: var(--color-bg-alt);
+		border-block: 1px solid var(--color-border);
+	}
+
+	.features__grid {
+		display: grid;
+		gap: var(--space-5);
+		grid-template-columns: 1fr;
+
+		@include mq(sm) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include mq(lg) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	.features__card {
+		padding: var(--space-6);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+		transition: transform var(--transition), box-shadow var(--transition);
+
+		&:hover {
+			transform: translateY(-3px);
+			box-shadow: var(--shadow-md);
+		}
+	}
+
+	.features__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 46px;
+		height: 46px;
+		color: var(--color-primary);
+		background: var(--color-primary-soft);
+		border-radius: var(--radius-md);
+		margin-bottom: var(--space-4);
+	}
+
+	.features__title {
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-2);
+	}
+
+	.features__text {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+	}
+
+	@include reduced-motion {
+		.features__card:hover {
+			transform: none;
+		}
+	}
+</style>

@@ -1,0 +1,55 @@
+---
+import type { Lang } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../Hero.astro';
+import TrustBar from '../TrustBar.astro';
+import ProblemSection from '../ProblemSection.astro';
+import SolutionSection from '../SolutionSection.astro';
+import HowItWorks from '../HowItWorks.astro';
+import Features from '../Features.astro';
+import SecurityDeepDive from '../SecurityDeepDive.astro';
+import AudienceSection from '../AudienceSection.astro';
+import CodeSection from '../CodeSection.astro';
+import PricingTeaser from '../PricingTeaser.astro';
+import Testimonials from '../Testimonials.astro';
+import FaqAccordion from '../FaqAccordion.astro';
+import CTASection from '../CTASection.astro';
+import {
+	organizationLd,
+	softwareApplicationLd,
+	faqPageLd,
+} from '../../data/jsonld';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t, tObj } = useTranslations(lang);
+
+const faqItems = tObj<{ q: string; a: string }[]>('faq.items').slice(0, 5);
+const jsonLd = [organizationLd(), softwareApplicationLd(lang), faqPageLd(faqItems)];
+---
+
+<BaseLayout
+	lang={lang}
+	title={t('meta.home.title')}
+	description={t('meta.home.description')}
+	path="/"
+	jsonLd={jsonLd}
+>
+	<Hero lang={lang} />
+	<TrustBar lang={lang} />
+	<ProblemSection lang={lang} />
+	<SolutionSection lang={lang} />
+	<HowItWorks lang={lang} />
+	<Features lang={lang} />
+	<SecurityDeepDive lang={lang} />
+	<AudienceSection lang={lang} />
+	<CodeSection lang={lang} />
+	<PricingTeaser lang={lang} />
+	<Testimonials lang={lang} />
+	<FaqAccordion lang={lang} limit={5} showMore background="alt" />
+	<CTASection lang={lang} />
+</BaseLayout>

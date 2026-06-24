@@ -1,0 +1,19 @@
+// =============================================================
+// Design Tokens — SCSS variables (used by mixins & build-time)
+// Runtime theming is handled via CSS custom properties in globals.scss
+// =============================================================
+
+// Breakpoints
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// Layout
+$container-max: 1200px;
+$container-narrow: 820px;
+
+// Z-index scale
+$z-header: 100;
+$z-dropdown: 200;
+$z-modal: 300;

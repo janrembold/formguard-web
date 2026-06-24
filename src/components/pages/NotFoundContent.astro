@@ -1,0 +1,74 @@
+---
+import type { Lang } from '../../i18n/utils';
+import { useTranslations, localizePath } from '../../i18n/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../Button.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t } = useTranslations(lang);
+---
+
+<BaseLayout
+	lang={lang}
+	title={t('meta.notFound.title')}
+	description={t('meta.notFound.description')}
+	path="/404"
+>
+	<section class="notfound">
+		<div class="container notfound__inner">
+			<p class="notfound__code">404</p>
+			<h1 class="notfound__title">{t('notFound.title')}</h1>
+			<p class="notfound__subtitle">{t('notFound.subtitle')}</p>
+			<div class="notfound__actions">
+				<Button href={localizePath('/', lang)} variant="primary" size="lg">{t('notFound.cta')}</Button>
+				<Button href={localizePath('/docs', lang)} variant="secondary" size="lg">{t('notFound.secondary')}</Button>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style lang="scss">
+	.notfound {
+		padding-block: var(--space-16);
+		text-align: center;
+	}
+
+	.notfound__inner {
+		max-width: 540px;
+		margin-inline: auto;
+	}
+
+	.notfound__code {
+		font-size: 6rem;
+		font-weight: 800;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.notfound__title {
+		margin-top: var(--space-5);
+		font-size: var(--text-3xl);
+	}
+
+	.notfound__subtitle {
+		margin-top: var(--space-4);
+		font-size: var(--text-lg);
+		color: var(--color-text-muted);
+	}
+
+	.notfound__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-3);
+		margin-top: var(--space-7);
+	}
+</style>

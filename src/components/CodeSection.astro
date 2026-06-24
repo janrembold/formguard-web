@@ -1,0 +1,42 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import { htmlSnippet, fetchSnippet, curlSnippet } from '../data/snippets';
+import SectionHeading from './SectionHeading.astro';
+import CodeTabs from './CodeTabs.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t } = useTranslations(lang);
+
+const tabs = [
+	{ id: 'html', label: t('code.tabs.html'), code: htmlSnippet, lang: 'html' },
+	{ id: 'fetch', label: t('code.tabs.fetch'), code: fetchSnippet, lang: 'javascript' },
+	{ id: 'curl', label: t('code.tabs.curl'), code: curlSnippet, lang: 'bash' },
+];
+---
+
+<section class="codesec" id="integration">
+	<div class="container codesec__inner">
+		<SectionHeading title={t('code.title')} subtitle={t('code.subtitle')} align="center" />
+		<div class="codesec__tabs">
+			<CodeTabs tabs={tabs} copyLabel={t('cta.copy')} copiedLabel={t('cta.copied')} />
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.codesec {
+		@include section-padding;
+		background: var(--color-bg-alt);
+		border-block: 1px solid var(--color-border);
+	}
+
+	.codesec__tabs {
+		max-width: 760px;
+		margin-inline: auto;
+	}
+</style>

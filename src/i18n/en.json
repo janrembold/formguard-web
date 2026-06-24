@@ -1,0 +1,584 @@
+{
+  "site": {
+    "name": "Submit API",
+    "tagline": "Secure form delivery — no backend, no spam."
+  },
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "docs": "Docs",
+    "faq": "FAQ",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "skipToContent": "Skip to content"
+  },
+  "cta": {
+    "primary": "Start for free",
+    "secondary": "View docs",
+    "howItWorks": "How it works",
+    "contactSales": "Contact sales",
+    "viewPricing": "See all pricing",
+    "fullFaq": "See all questions",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "trustLine": "30 days free · 300 requests included · no credit card required",
+  "meta": {
+    "home": {
+      "title": "Submit API – Secure form delivery without a backend",
+      "description": "Submit API checks every form submission for spam, viruses and attacks and forwards only clean data to your inbox by email. Ready in minutes, no backend required."
+    },
+    "pricing": {
+      "title": "Pricing – Submit API",
+      "description": "Transparent, usage-based pricing. Every security feature in every plan. You only pay per request. 30-day free trial."
+    },
+    "docs": {
+      "title": "Docs & Quickstart – Submit API",
+      "description": "Quickstart in 3 steps: create a form endpoint, set the action URL, receive clean emails. With HTML, fetch and cURL examples."
+    },
+    "faq": {
+      "title": "Frequently asked questions – Submit API",
+      "description": "Answers about integration, privacy, spam protection, billing and limits of Submit API."
+    },
+    "impressum": {
+      "title": "Imprint – Submit API",
+      "description": "Legal information for Submit API."
+    },
+    "datenschutz": {
+      "title": "Privacy Policy – Submit API",
+      "description": "Information about how Submit API processes personal data."
+    },
+    "notFound": {
+      "title": "Page not found – Submit API",
+      "description": "This page does not exist."
+    }
+  },
+  "hero": {
+    "badge": "GDPR-compliant · Hosted in the EU",
+    "headline": "Secure form delivery — no backend, no spam.",
+    "subline": "Submit API checks every form submission for spam, viruses and attacks and forwards only clean data to you by email. Just change your form’s action URL — that’s it.",
+    "codeCaption": "Integration is this simple:",
+    "codeFilename": "contact.html"
+  },
+  "logoCloud": {
+    "title": "Trusted by developers, agencies and businesses.",
+    "badges": ["GDPR-compliant", "Hosted in the EU", "ClamAV virus scan"]
+  },
+  "problem": {
+    "title": "Forms are an open door.",
+    "subtitle": "Every open form is an invitation — including for the wrong people.",
+    "cards": [
+      {
+        "title": "Spam flood",
+        "text": "Bots fill your inbox with junk until real enquiries get lost."
+      },
+      {
+        "title": "Security risk",
+        "text": "Malicious code, viruses and injection attacks reach you through form fields."
+      },
+      {
+        "title": "Overhead",
+        "text": "Building, maintaining and securing your own backend costs time and nerves."
+      }
+    ]
+  },
+  "solution": {
+    "title": "A secure layer between form and inbox.",
+    "text": "Submit API sits between your form and your email. Every submission runs through a multi-stage security and automation pipeline. Only checked, sanitized data reaches your inbox — with no backend of your own.",
+    "benefits": [
+      "Less spam, no malicious code — a security layer in front of your inbox.",
+      "Ready in minutes — just change the action URL, no backend needed.",
+      "Works with any form — static, any framework, no lock-in.",
+      "Privacy-friendly, hosted in the EU, transparent processing."
+    ]
+  },
+  "how": {
+    "title": "Up and running in three steps.",
+    "subtitle": "No migration, no backend — just a changed URL.",
+    "steps": [
+      {
+        "title": "Set the action URL",
+        "text": "Put your Submit API URL as the action of your HTML form. Nothing else required."
+      },
+      {
+        "title": "Submit API checks & processes",
+        "text": "Spam, virus and injection checks run automatically, optionally followed by AI analysis."
+      },
+      {
+        "title": "Receive a clean email",
+        "text": "Only checked data lands in your inbox — additionally via webhook if you like."
+      }
+    ]
+  },
+  "features": {
+    "title": "Everything secure forms need.",
+    "subtitle": "Every feature is included in every plan — at no extra cost.",
+    "items": [
+      {
+        "icon": "shield",
+        "title": "Spam & bot protection",
+        "text": "Heuristics, keyword and link analysis reliably keep junk out."
+      },
+      {
+        "icon": "virus",
+        "title": "Virus & malware scan",
+        "text": "File attachments are scanned with ClamAV before they reach you."
+      },
+      {
+        "icon": "code",
+        "title": "Injection & XSS protection",
+        "text": "Header injection, script tags and control characters are neutralized."
+      },
+      {
+        "icon": "file",
+        "title": "File validation",
+        "text": "Size, MIME and extension checks reliably block .exe, .php and friends."
+      },
+      {
+        "icon": "mail",
+        "title": "Instant email delivery",
+        "text": "Sanitized data straight to your inbox, optionally via webhook too."
+      },
+      {
+        "icon": "sparkles",
+        "title": "Optional AI analysis",
+        "text": "Automatically categorize, enrich and pre-sort submissions."
+      },
+      {
+        "icon": "infinity",
+        "title": "Unlimited forms",
+        "text": "As many forms and endpoints as you want in every plan — no limit."
+      },
+      {
+        "icon": "chart",
+        "title": "Dashboard & live submissions",
+        "text": "Keep an eye on volume and incoming submissions in real time."
+      }
+    ]
+  },
+  "security": {
+    "title": "Security is never an upsell — it’s always included.",
+    "subtitle": "Every submission is untrusted input first and runs through a multi-stage pipeline. All checks are included in every plan.",
+    "checks": [
+      {
+        "title": "Required field & structure checks",
+        "text": "Empty or tampered requests are rejected."
+      },
+      {
+        "title": "Length & content limits",
+        "text": "Text fields ~1,000 characters, body ~10,000 characters — against overload."
+      },
+      {
+        "title": "Control-character / encoding protection",
+        "text": "NULL bytes and non-printable characters are blocked."
+      },
+      {
+        "title": "Email format & injection protection",
+        "text": "Prevents header injection such as smuggled-in Bcc recipients."
+      },
+      {
+        "title": "URL / link checks",
+        "text": "Only http/https allowed, javascript: URLs are blocked."
+      },
+      {
+        "title": "File validation",
+        "text": "Size limit, MIME/extension matching, blocking of .php, .exe, .js."
+      },
+      {
+        "title": "Spam detection",
+        "text": "Too many links, spam terms, suspicious combinations; CAPTCHA, IP & rate-limiting options."
+      },
+      {
+        "title": "Malware / virus scan",
+        "text": "File attachments are scanned for malware with ClamAV."
+      },
+      {
+        "title": "XSS, script & header injection protection",
+        "text": "Script tags removed, HTML escaped, line breaks strictly stripped."
+      },
+      {
+        "title": "Sender / environment checks",
+        "text": "IP, hostname and referer matching against your allowed domains."
+      }
+    ],
+    "note": "Important: all security features are included in every plan — never a paid extra."
+  },
+  "audience": {
+    "title": "Built for your setup.",
+    "subtitle": "Whether it’s code, a client project or a first website.",
+    "cards": [
+      {
+        "title": "Developers & teams",
+        "text": "Fast API integration, clear snippets and webhooks with retry. No vendor lock-in, works with any stack.",
+        "points": [
+          "HTML, fetch & cURL snippets",
+          "Webhooks & retry",
+          "Clean JSON response format"
+        ]
+      },
+      {
+        "title": "Agencies & freelancers",
+        "text": "Many client projects, many domains — one central dashboard. Unlimited forms and team members at no extra cost.",
+        "points": [
+          "Unlimited forms & domains",
+          "Team members included",
+          "Efficient across many projects"
+        ]
+      },
+      {
+        "title": "Site owners & SMBs",
+        "text": "No backend, no maintenance. Just set the action URL and receive secure emails — without the jargon.",
+        "points": [
+          "No backend required",
+          "Set up in minutes",
+          "Secure emails to your inbox"
+        ]
+      }
+    ]
+  },
+  "code": {
+    "title": "Integrate in a minute.",
+    "subtitle": "Pick your way — the result is always a secure, checked delivery.",
+    "tabs": {
+      "html": "Plain HTML",
+      "fetch": "JavaScript (fetch)",
+      "curl": "cURL"
+    }
+  },
+  "pricingTeaser": {
+    "title": "Fair pricing, usage-based only.",
+    "subtitle": "Every feature in every plan — you only pay per request.",
+    "perMonth": "/ month",
+    "requestsLabel": "Requests / month",
+    "mostPopular": "Most popular",
+    "select": "Select",
+    "note": "All security features included. AI analysis optional."
+  },
+  "testimonials": {
+    "title": "What users say.",
+    "subtitle": "Real mechanics instead of empty promises.",
+    "items": [
+      {
+        "quote": "We shut down our own form backend. One changed action URL and the spam was practically gone — with nothing for us to maintain.",
+        "name": "[Placeholder name]",
+        "role": "Lead Developer",
+        "company": "[Placeholder company]"
+      },
+      {
+        "quote": "For our client projects Submit API is a no-brainer. Unlimited forms, one dashboard — and security is always included.",
+        "name": "[Placeholder name]",
+        "role": "Agency owner",
+        "company": "[Placeholder agency]"
+      },
+      {
+        "quote": "Finally no more infected attachments in our inbox. Setup took five minutes.",
+        "name": "[Placeholder name]",
+        "role": "Managing Director",
+        "company": "[Placeholder SMB]"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions.",
+    "subtitle": "Everything important about integration, privacy and billing.",
+    "items": [
+      {
+        "q": "Do I need my own backend?",
+        "a": "No. You only change your form’s action URL to your Submit API address. No server, no database and no custom code required — Submit API handles receiving, checking and delivery."
+      },
+      {
+        "q": "Does it work with my framework or static sites?",
+        "a": "Yes. Submit API works with any HTML form — whether it’s a static site, React, Vue, Svelte, WordPress or another framework. Pure static hosting without a server is no problem either."
+      },
+      {
+        "q": "How does Submit API protect against spam and viruses?",
+        "a": "Every submission runs through a multi-stage pipeline: spam heuristics with keyword and link analysis, a ClamAV virus scan for attachments, injection and XSS protection, file validation as well as sender and environment checks. Only then is it delivered."
+      },
+      {
+        "q": "Is Submit API GDPR-compliant?",
+        "a": "Yes. Hosting takes place in the EU, processing is transparent and limited to delivery. Details are in our privacy policy; we provide a data processing agreement."
+      },
+      {
+        "q": "How much does it cost and how is it billed?",
+        "a": "You pay solely by the number of incoming requests per month. All features are included in every plan; only AI analysis is an optional add-on. You start with 30 days free and 300 requests."
+      },
+      {
+        "q": "What happens when I reach my request limit?",
+        "a": "Your request limit is a fixed, hard limit — with no extra buffer and no pay-as-you-go. As soon as your monthly quota is reached, we pause live delivery and kindly suggest a suitable upgrade. That keeps your costs fully predictable and means no surprise bills. The moment you upgrade, delivery resumes right away."
+      },
+      {
+        "q": "Can I cancel anytime?",
+        "a": "Yes. All plans can be cancelled monthly. With annual billing you save two months, but you’re not locked in long term."
+      },
+      {
+        "q": "Do you support file uploads?",
+        "a": "Yes. File uploads are supported and go through size, MIME and extension checks plus a ClamAV virus scan before delivery."
+      },
+      {
+        "q": "What does the optional AI analysis do?",
+        "a": "AI analysis classifies and categorizes submissions, enriches them with metadata and can prepare auto-replies on request. This helps you pre-sort enquiries faster. It’s optional and costs about 40 percent on top of the chosen plan."
+      },
+      {
+        "q": "How fast is the integration?",
+        "a": "Within minutes. Create an account, generate an endpoint, set your form’s action URL — done. A step-by-step guide is in the docs."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Get started in minutes — for free.",
+    "subtitle": "30-day free trial, 300 requests included. No credit card required.",
+    "primary": "Start for free",
+    "secondary": "View docs"
+  },
+  "footer": {
+    "description": "Submit API is the secure interface between your web form and your inbox — with spam, virus and injection protection in every plan.",
+    "product": "Product",
+    "legal": "Legal",
+    "resources": "Resources",
+    "links": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "docs": "Docs",
+      "faq": "FAQ",
+      "login": "Sign in",
+      "impressum": "Imprint",
+      "datenschutz": "Privacy"
+    },
+    "madeIn": "Hosted in the EU · GDPR-compliant",
+    "copyright": "All rights reserved."
+  },
+  "pricingPage": {
+    "hero": {
+      "title": "One decision, two sliders.",
+      "subtitle": "Choose your monthly request volume and whether you want AI analysis. You’ll see the price instantly."
+    },
+    "calculator": {
+      "requests": "Requests / month",
+      "billing": "Billing",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "yearlyHint": "2 months free",
+      "ai": "AI analysis",
+      "aiOff": "Without AI",
+      "aiOn": "With AI",
+      "aiHint": "Categorization, enrichment & auto-reply (≈ +40%)",
+      "yourPlan": "Your plan",
+      "perMonth": "/ month",
+      "perMonthYearly": "/ month, billed annually",
+      "billedYearly": "billed annually as {amount}",
+      "custom": "Custom",
+      "customNote": "From 500,000 requests — dedicated queue, SLA & custom terms.",
+      "cta": "Start for free",
+      "ctaEnterprise": "Contact sales",
+      "save": "Save"
+    },
+    "table": {
+      "title": "All plans compared",
+      "plan": "Plan",
+      "requests": "Requests / month",
+      "withoutAi": "Without AI",
+      "withAi": "With AI",
+      "idealFor": "Ideal for",
+      "month": "/ mo",
+      "freeNote": "Every plan starts with 30 days free and 300 included requests — no credit card required."
+    },
+    "included": {
+      "title": "Included in every plan",
+      "subtitle": "You only pay per request — you get all the features.",
+      "items": [
+        "Full spam & risk analysis",
+        "Full malware/virus scan (ClamAV)",
+        "Injection/XSS protection & file validation",
+        "Unlimited forms",
+        "Instant email forwarding",
+        "Webhooks & retry",
+        "Dashboard & live submissions",
+        "Team members at no extra cost"
+      ]
+    },
+    "trial": {
+      "title": "30-day free trial",
+      "text": "Start with the full feature set and 300 included requests. No credit card required to start.",
+      "limitTitle": "A clear, hard request limit",
+      "limitText": "Your quota is a fixed limit — no buffer and no pay-as-you-go. Once it’s used up for the month, live delivery pauses and we kindly suggest a suitable upgrade. This keeps your costs predictable, and everything resumes the moment you upgrade."
+    },
+    "addon": {
+      "title": "Optional add-on: AI analysis",
+      "text": "The only paid extra — a simple “with / without AI” switch. About 40 percent on top of the chosen plan. Categorization, enrichment and optional auto-replies included."
+    }
+  },
+  "docs": {
+    "hero": {
+      "title": "Quickstart: ready in 3 steps",
+      "subtitle": "Create an endpoint, set the action URL and receive checked emails. No backend required."
+    },
+    "steps": {
+      "title": "Quickstart",
+      "items": [
+        {
+          "title": "Create an account",
+          "text": "Sign up for free in the dashboard. No credit card needed, 30 days and 300 requests included."
+        },
+        {
+          "title": "Create a form endpoint",
+          "text": "Create an endpoint in the dashboard and set the recipient email. You receive a unique form ID."
+        },
+        {
+          "title": "Set the action URL",
+          "text": "Put the Submit API URL with your form ID as the action in your form — done."
+        }
+      ]
+    },
+    "examples": {
+      "title": "Code examples",
+      "subtitle": "Three ways, one result. Replace YOUR_FORM_ID with your real ID.",
+      "htmlTab": "HTML",
+      "fetchTab": "JavaScript (fetch)",
+      "curlTab": "cURL"
+    },
+    "responses": {
+      "title": "Response & status codes",
+      "note": "Example values — adapt them to your final API contract.",
+      "colCode": "Status",
+      "colMeaning": "Meaning",
+      "colBody": "Response (example)",
+      "rows": [
+        {
+          "code": "200 OK",
+          "meaning": "Successfully received, checked and delivered.",
+          "body": "{ \"status\": \"delivered\", \"id\": \"sub_123\" }"
+        },
+        {
+          "code": "202 Accepted",
+          "meaning": "Accepted, delivery runs asynchronously (e.g. with AI analysis).",
+          "body": "{ \"status\": \"queued\", \"id\": \"sub_124\" }"
+        },
+        {
+          "code": "422 Unprocessable",
+          "meaning": "Validation error — e.g. a required field is missing or a file rejected.",
+          "body": "{ \"error\": \"validation_failed\", \"fields\": [\"email\"] }"
+        },
+        {
+          "code": "429 Too Many Requests",
+          "meaning": "Rate limit reached — please try again later.",
+          "body": "{ \"error\": \"rate_limited\" }"
+        },
+        {
+          "code": "451 Rejected",
+          "meaning": "Classified as spam or malicious code and rejected.",
+          "body": "{ \"error\": \"rejected\", \"reason\": \"spam\" }"
+        }
+      ]
+    },
+    "notes": {
+      "title": "Good to know",
+      "items": [
+        {
+          "title": "File uploads",
+          "text": "Use enctype=\"multipart/form-data\". Attachments are checked for size, MIME type, extension and viruses (ClamAV)."
+        },
+        {
+          "title": "Webhooks & retry",
+          "text": "In addition to email you can configure a webhook. Failed deliveries are retried automatically."
+        },
+        {
+          "title": "Limits",
+          "text": "Text fields are limited to about 1,000 characters, the body to about 10,000 characters. Longer content is rejected."
+        },
+        {
+          "title": "Optional AI analysis",
+          "text": "Enable AI analysis in the dashboard to automatically categorize, enrich and pre-sort submissions."
+        }
+      ]
+    }
+  },
+  "legal": {
+    "draftNotice": "This is a template scaffold and must be legally reviewed and completed before publication.",
+    "impressum": {
+      "title": "Imprint",
+      "sections": [
+        {
+          "heading": "Information pursuant to § 5 DDG",
+          "body": "[Company name]\n[Street and number]\n[Postal code City]\n[Country]"
+        },
+        {
+          "heading": "Represented by",
+          "body": "[Authorized representative / Managing Director]"
+        },
+        {
+          "heading": "Contact",
+          "body": "Phone: [Phone number]\nEmail: [Email]"
+        },
+        {
+          "heading": "Register entry",
+          "body": "Entry in the commercial register.\nRegister court: [Register court]\nRegister number: [Register number]"
+        },
+        {
+          "heading": "VAT ID",
+          "body": "VAT identification number pursuant to § 27 a of the German VAT Act:\n[VAT ID]"
+        },
+        {
+          "heading": "Responsible for content pursuant to § 18 (2) MStV",
+          "body": "[Responsible person]\n[Address]"
+        },
+        {
+          "heading": "Dispute resolution",
+          "body": "The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr. We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board."
+        }
+      ]
+    },
+    "datenschutz": {
+      "title": "Privacy Policy",
+      "sections": [
+        {
+          "heading": "1. Controller",
+          "body": "The controller responsible for data processing on this website is:\n[Company name]\n[Address]\nEmail: [Email]"
+        },
+        {
+          "heading": "2. What data we process",
+          "body": "We process data you actively provide (e.g. during registration or via forms) as well as technically necessary data such as IP address, timestamp and browser information. Form data submitted via Submit API is processed solely for the purpose of security checks and delivery."
+        },
+        {
+          "heading": "3. Purposes and legal bases",
+          "body": "Processing is carried out to provide the service (Art. 6 (1) (b) GDPR), to safeguard legitimate interests such as security and spam prevention (Art. 6 (1) (f) GDPR) and to comply with legal obligations (Art. 6 (1) (c) GDPR)."
+        },
+        {
+          "heading": "4. Data processing on behalf",
+          "body": "Where we process data on your behalf, we conclude a data processing agreement (DPA) pursuant to Art. 28 GDPR. [Add details and sub-processors.]"
+        },
+        {
+          "heading": "5. Hosting & storage location",
+          "body": "Our servers and the processing of form data are located in the European Union. [Specify hosting provider and location.]"
+        },
+        {
+          "heading": "6. Authentication",
+          "body": "For signing in to the dashboard we use [Auth0/authentication provider]. Login data is processed according to the provider’s specifications. [Add provider and privacy notes.]"
+        },
+        {
+          "heading": "7. Cookies & analytics",
+          "body": "We only use technically necessary cookies. For reach measurement we use — where enabled — a privacy-friendly analytics tool ([e.g. Plausible]) without cookies and without building personal profiles."
+        },
+        {
+          "heading": "8. Retention period",
+          "body": "We store personal data only as long as necessary for the stated purposes or as required by statutory retention periods."
+        },
+        {
+          "heading": "9. Your rights",
+          "body": "You have the right to access, rectification, erasure, restriction of processing, data portability and objection. You may also lodge a complaint with a supervisory authority."
+        },
+        {
+          "heading": "10. Contact",
+          "body": "For privacy questions reach us at: [Email]. [If appointed: add contact details of the data protection officer.]"
+        }
+      ]
+    }
+  },
+  "notFound": {
+    "title": "This page doesn’t exist.",
+    "subtitle": "Maybe the link is outdated or there’s a typo somewhere.",
+    "cta": "Back to home",
+    "secondary": "Go to docs"
+  }
+}

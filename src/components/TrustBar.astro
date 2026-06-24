@@ -1,0 +1,94 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import Icon from './Icon.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t, tList } = useTranslations(lang);
+const badges = tList('logoCloud.badges');
+
+// Placeholder brand names — replace with real customer logos.
+const placeholderLogos = ['Northwind', 'Acme Co', 'Lumen', 'Studio Park', 'Verda', 'Hexa'];
+---
+
+<section class="trustbar">
+	<div class="container">
+		<p class="trustbar__title">{t('logoCloud.title')}</p>
+
+		<ul class="trustbar__logos" aria-label="Placeholder logos">
+			{placeholderLogos.map((name) => <li class="trustbar__logo">{name}</li>)}
+		</ul>
+
+		<ul class="trustbar__badges">
+			{
+				badges.map((badge) => (
+					<li class="trustbar__badge">
+						<Icon name="check" size={16} />
+						{badge}
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style lang="scss">
+	.trustbar {
+		padding-block: var(--space-8);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.trustbar__title {
+		text-align: center;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-text-subtle);
+	}
+
+	.trustbar__logos {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: var(--space-5) var(--space-8);
+		margin-top: var(--space-6);
+	}
+
+	.trustbar__logo {
+		font-size: var(--text-xl);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-border-strong);
+		filter: grayscale(1);
+		user-select: none;
+	}
+
+	.trustbar__badges {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-3) var(--space-5);
+		margin-top: var(--space-7);
+	}
+
+	.trustbar__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		padding: 6px 14px;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-text-muted);
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+
+		:global(svg) {
+			color: var(--color-success);
+		}
+	}
+</style>

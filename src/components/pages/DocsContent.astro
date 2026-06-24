@@ -1,0 +1,294 @@
+---
+import type { Lang } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../SectionHeading.astro';
+import CodeTabs from '../CodeTabs.astro';
+import CTASection from '../CTASection.astro';
+import Icon from '../Icon.astro';
+import { htmlSnippet, fetchSnippet, curlSnippet } from '../../data/snippets';
+import { organizationLd, softwareApplicationLd } from '../../data/jsonld';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t, tObj } = useTranslations(lang);
+
+const steps = tObj<{ title: string; text: string }[]>('docs.steps.items');
+const notes = tObj<{ title: string; text: string }[]>('docs.notes.items');
+const rows = tObj<{ code: string; meaning: string; body: string }[]>('docs.responses.rows');
+
+const tabs = [
+	{ id: 'html', label: t('docs.examples.htmlTab'), code: htmlSnippet, lang: 'html' },
+	{ id: 'fetch', label: t('docs.examples.fetchTab'), code: fetchSnippet, lang: 'javascript' },
+	{ id: 'curl', label: t('docs.examples.curlTab'), code: curlSnippet, lang: 'bash' },
+];
+
+const jsonLd = [organizationLd(), softwareApplicationLd(lang)];
+---
+
+<BaseLayout
+	lang={lang}
+	title={t('meta.docs.title')}
+	description={t('meta.docs.description')}
+	path="/docs"
+	jsonLd={jsonLd}
+>
+	<section class="docs-hero">
+		<div class="container">
+			<SectionHeading
+				eyebrow="Quickstart"
+				title={t('docs.hero.title')}
+				subtitle={t('docs.hero.subtitle')}
+				align="left"
+			/>
+		</div>
+	</section>
+
+	<section class="docs-steps">
+		<div class="container">
+			<h2 class="docs-section-title">{t('docs.steps.title')}</h2>
+			<ol class="docs-steps__grid">
+				{
+					steps.map((step, i) => (
+						<li class="docs-step">
+							<span class="docs-step__num">{i + 1}</span>
+							<div>
+								<h3>{step.title}</h3>
+								<p>{step.text}</p>
+							</div>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</section>
+
+	<section class="docs-examples">
+		<div class="container">
+			<h2 class="docs-section-title">{t('docs.examples.title')}</h2>
+			<p class="docs-lead">{t('docs.examples.subtitle')}</p>
+			<div class="docs-examples__tabs">
+				<CodeTabs tabs={tabs} copyLabel={t('cta.copy')} copiedLabel={t('cta.copied')} />
+			</div>
+		</div>
+	</section>
+
+	<section class="docs-responses">
+		<div class="container">
+			<h2 class="docs-section-title">{t('docs.responses.title')}</h2>
+			<p class="docs-note"><Icon name="lock" size={15} /> {t('docs.responses.note')}</p>
+			<div class="docs-table-wrap">
+				<table class="docs-table">
+					<thead>
+						<tr>
+							<th scope="col">{t('docs.responses.colCode')}</th>
+							<th scope="col">{t('docs.responses.colMeaning')}</th>
+							<th scope="col">{t('docs.responses.colBody')}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							rows.map((row) => (
+								<tr>
+									<th scope="row"><code>{row.code}</code></th>
+									<td>{row.meaning}</td>
+									<td><code class="docs-table__body">{row.body}</code></td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="docs-notes">
+		<div class="container">
+			<h2 class="docs-section-title">{t('docs.notes.title')}</h2>
+			<div class="docs-notes__grid">
+				{
+					notes.map((note) => (
+						<article class="docs-note-card">
+							<h3>{note.title}</h3>
+							<p>{note.text}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<CTASection lang={lang} />
+</BaseLayout>
+
+<style lang="scss">
+	.docs-hero {
+		padding-block: var(--space-10) var(--space-6);
+		background:
+			radial-gradient(60% 60% at 20% 0%, var(--color-primary-soft) 0%, transparent 70%),
+			var(--color-bg);
+	}
+
+	.docs-section-title {
+		font-size: var(--text-2xl);
+		margin-bottom: var(--space-5);
+	}
+
+	.docs-lead {
+		margin-top: calc(var(--space-5) * -1 + var(--space-2));
+		margin-bottom: var(--space-5);
+		color: var(--color-text-muted);
+	}
+
+	.docs-steps {
+		padding-block: var(--space-8);
+	}
+
+	.docs-steps__grid {
+		display: grid;
+		gap: var(--space-4);
+
+		@include mq(md) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.docs-step {
+		display: flex;
+		gap: var(--space-4);
+		padding: var(--space-5);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+
+		h3 {
+			font-size: var(--text-lg);
+			margin-bottom: var(--space-1);
+		}
+
+		p {
+			font-size: var(--text-sm);
+			color: var(--color-text-muted);
+		}
+	}
+
+	.docs-step__num {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 36px;
+		height: 36px;
+		font-weight: 800;
+		color: var(--color-text-invert);
+		background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+		border-radius: var(--radius-md);
+	}
+
+	.docs-examples {
+		padding-block: var(--space-8);
+		background: var(--color-bg-alt);
+		border-block: 1px solid var(--color-border);
+	}
+
+	.docs-examples__tabs {
+		max-width: 760px;
+	}
+
+	.docs-responses {
+		padding-block: var(--space-10);
+	}
+
+	.docs-note {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		margin-bottom: var(--space-5);
+		padding: 6px 12px;
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+	}
+
+	.docs-table-wrap {
+		overflow-x: auto;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+	}
+
+	.docs-table {
+		width: 100%;
+		min-width: 640px;
+		border-collapse: collapse;
+		background: var(--color-surface);
+
+		th,
+		td {
+			padding: var(--space-4) var(--space-5);
+			text-align: left;
+			border-bottom: 1px solid var(--color-border);
+			font-size: var(--text-sm);
+			vertical-align: top;
+		}
+
+		thead th {
+			font-size: var(--text-xs);
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: var(--color-text-subtle);
+			background: var(--color-bg-alt);
+		}
+
+		tbody tr:last-child th,
+		tbody tr:last-child td {
+			border-bottom: none;
+		}
+
+		code {
+			font-family: var(--font-mono);
+			font-size: var(--text-xs);
+		}
+	}
+
+	.docs-table__body {
+		color: var(--color-text-muted);
+	}
+
+	.docs-notes {
+		padding-block: var(--space-8) var(--space-10);
+		background: var(--color-bg-alt);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.docs-notes__grid {
+		display: grid;
+		gap: var(--space-4);
+
+		@include mq(sm) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.docs-note-card {
+		padding: var(--space-5);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+
+		h3 {
+			font-size: var(--text-lg);
+			margin-bottom: var(--space-2);
+		}
+
+		p {
+			font-size: var(--text-sm);
+			color: var(--color-text-muted);
+		}
+	}
+</style>

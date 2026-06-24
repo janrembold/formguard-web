@@ -1,0 +1,113 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+	lang: Lang;
+}
+
+interface Card {
+	title: string;
+	text: string;
+	points: string[];
+}
+
+const { lang } = Astro.props;
+const { t, tObj } = useTranslations(lang);
+const cards = tObj<Card[]>('audience.cards');
+const icons = ['code', 'infinity', 'mail'];
+---
+
+<section class="audience">
+	<div class="container">
+		<SectionHeading title={t('audience.title')} subtitle={t('audience.subtitle')} />
+
+		<div class="audience__grid">
+			{
+				cards.map((card, i) => (
+					<article class="audience__card reveal">
+						<span class="audience__icon"><Icon name={icons[i] ?? 'code'} size={22} /></span>
+						<h3 class="audience__title">{card.title}</h3>
+						<p class="audience__text">{card.text}</p>
+						<ul class="audience__points">
+							{card.points.map((point) => (
+								<li>
+									<Icon name="check" size={15} />
+									{point}
+								</li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.audience {
+		@include section-padding;
+	}
+
+	.audience__grid {
+		display: grid;
+		gap: var(--space-5);
+		grid-template-columns: 1fr;
+
+		@include mq(md) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.audience__card {
+		padding: var(--space-6);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.audience__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 46px;
+		height: 46px;
+		color: var(--color-primary);
+		background: var(--color-primary-soft);
+		border-radius: var(--radius-md);
+		margin-bottom: var(--space-4);
+	}
+
+	.audience__title {
+		font-size: var(--text-xl);
+		margin-bottom: var(--space-2);
+	}
+
+	.audience__text {
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+		margin-bottom: var(--space-4);
+	}
+
+	.audience__points {
+		display: grid;
+		gap: var(--space-2);
+
+		li {
+			display: flex;
+			align-items: flex-start;
+			gap: var(--space-2);
+			font-size: var(--text-sm);
+			font-weight: 500;
+
+			:global(svg) {
+				color: var(--color-success);
+				flex-shrink: 0;
+				margin-top: 3px;
+			}
+		}
+	}
+</style>

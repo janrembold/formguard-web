@@ -1,0 +1,237 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations, localizePath } from '../i18n/utils';
+import { LOGIN_URL } from '../data/constants';
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+	lang: Lang;
+	path: string;
+}
+
+const { lang, path } = Astro.props;
+const { t } = useTranslations(lang);
+
+const home = localizePath('/', lang);
+const featuresAnchor = `${home === '/' ? '' : home.replace(/\/$/, '')}/#features`;
+const navLinks = [
+	{ label: t('nav.features'), href: featuresAnchor },
+	{ label: t('nav.pricing'), href: localizePath('/pricing', lang) },
+	{ label: t('nav.docs'), href: localizePath('/docs', lang) },
+	{ label: t('nav.faq'), href: localizePath('/faq', lang) },
+];
+---
+
+<header class="header" data-header>
+	<div class="container header__inner">
+		<a href={home} class="header__logo" aria-label="Submit API">
+			<Logo />
+		</a>
+
+		<nav class="header__nav" aria-label={t('nav.menu')}>
+			{navLinks.map((link) => <a href={link.href} class="header__link">{link.label}</a>)}
+		</nav>
+
+		<div class="header__actions">
+			<LanguageSwitcher lang={lang} path={path} />
+			<Button href={LOGIN_URL} variant="primary" size="md" external>{t('cta.primary')}</Button>
+		</div>
+
+		<button
+			class="header__toggle"
+			type="button"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+			aria-label={t('nav.openMenu')}
+			data-menu-toggle
+		>
+			<span class="header__toggle-bar"></span>
+			<span class="header__toggle-bar"></span>
+			<span class="header__toggle-bar"></span>
+		</button>
+	</div>
+
+	<div class="header__mobile" id="mobile-menu" hidden data-mobile-menu>
+		<nav class="header__mobile-nav" aria-label={t('nav.menu')}>
+			{navLinks.map((link) => <a href={link.href} class="header__mobile-link">{link.label}</a>)}
+		</nav>
+		<div class="header__mobile-actions">
+			<LanguageSwitcher lang={lang} path={path} />
+			<Button href={LOGIN_URL} variant="primary" size="lg" external>{t('cta.primary')}</Button>
+		</div>
+	</div>
+</header>
+
+<script>
+	const header = document.querySelector<HTMLElement>('[data-header]');
+	const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+	const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+
+	if (toggle && menu) {
+		const setOpen = (open: boolean) => {
+			toggle.setAttribute('aria-expanded', String(open));
+			menu.hidden = !open;
+			header?.classList.toggle('is-open', open);
+			document.body.style.overflow = open ? 'hidden' : '';
+		};
+		toggle.addEventListener('click', () => {
+			setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+		});
+		menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+		window.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') setOpen(false);
+		});
+		const mq = window.matchMedia('(min-width: 1024px)');
+		mq.addEventListener('change', (e) => {
+			if (e.matches) setOpen(false);
+		});
+	}
+
+	// Subtle shadow once scrolled.
+	const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+	onScroll();
+	window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+<style lang="scss">
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: $z-header;
+		background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+		backdrop-filter: saturate(180%) blur(12px);
+		border-bottom: 1px solid transparent;
+		transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+
+		&.is-scrolled {
+			border-bottom-color: var(--color-border);
+			box-shadow: var(--shadow-sm);
+		}
+	}
+
+	.header__inner {
+		display: flex;
+		align-items: center;
+		gap: var(--space-5);
+		height: var(--header-height);
+	}
+
+	.header__logo {
+		text-decoration: none;
+		flex-shrink: 0;
+	}
+
+	.header__nav {
+		display: none;
+		align-items: center;
+		gap: var(--space-5);
+		margin-inline: auto;
+
+		@include mq(lg) {
+			display: flex;
+		}
+	}
+
+	.header__link {
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-text-muted);
+		text-decoration: none;
+
+		&:hover {
+			color: var(--color-text);
+		}
+	}
+
+	.header__actions {
+		display: none;
+		align-items: center;
+		gap: var(--space-4);
+
+		@include mq(lg) {
+			display: flex;
+		}
+	}
+
+	.header__toggle {
+		display: inline-flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 44px;
+		height: 44px;
+		margin-left: auto;
+		padding: 10px;
+		background: transparent;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		cursor: pointer;
+
+		@include mq(lg) {
+			display: none;
+		}
+	}
+
+	.header__toggle-bar {
+		display: block;
+		height: 2px;
+		width: 100%;
+		background: var(--color-text);
+		border-radius: 2px;
+		transition: transform var(--transition-fast), opacity var(--transition-fast);
+	}
+
+	.header.is-open .header__toggle-bar:nth-child(1) {
+		transform: translateY(7px) rotate(45deg);
+	}
+	.header.is-open .header__toggle-bar:nth-child(2) {
+		opacity: 0;
+	}
+	.header.is-open .header__toggle-bar:nth-child(3) {
+		transform: translateY(-7px) rotate(-45deg);
+	}
+
+	.header__mobile {
+		border-top: 1px solid var(--color-border);
+		background: var(--color-bg);
+		padding: var(--space-5);
+
+		@include mq(lg) {
+			display: none;
+		}
+	}
+
+	.header__mobile-nav {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+	}
+
+	.header__mobile-link {
+		padding: var(--space-3) var(--space-2);
+		font-size: var(--text-lg);
+		font-weight: 600;
+		color: var(--color-text);
+		text-decoration: none;
+		border-radius: var(--radius-md);
+
+		&:hover {
+			background: var(--color-bg-alt);
+		}
+	}
+
+	.header__mobile-actions {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		margin-top: var(--space-4);
+		padding-top: var(--space-4);
+		border-top: 1px solid var(--color-border);
+
+		:global(.btn) {
+			width: 100%;
+		}
+	}
+</style>

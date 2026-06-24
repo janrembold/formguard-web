@@ -1,0 +1,145 @@
+---
+interface Props {
+	code: string;
+	lang?: string;
+	filename?: string;
+	copyLabel?: string;
+	copiedLabel?: string;
+	class?: string;
+}
+
+const {
+	code,
+	lang = 'html',
+	filename,
+	copyLabel = 'Copy',
+	copiedLabel = 'Copied!',
+	class: className,
+} = Astro.props;
+---
+
+<div class:list={['code', className]} data-code-block>
+	<div class="code__bar">
+		<div class="code__dots" aria-hidden="true">
+			<span></span><span></span><span></span>
+		</div>
+		{filename && <span class="code__filename">{filename}</span>}
+		<button
+			type="button"
+			class="code__copy"
+			data-copy
+			data-label={copyLabel}
+			data-copied={copiedLabel}
+			aria-label={copyLabel}
+		>
+			<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<rect x="9" y="9" width="11" height="11" rx="2" />
+				<path d="M5 15V5a2 2 0 0 1 2-2h10" />
+			</svg>
+			<span class="code__copy-text">{copyLabel}</span>
+		</button>
+	</div>
+	<pre class="code__pre"><code class={`language-${lang}`} data-code-content>{code}</code></pre>
+</div>
+
+<style lang="scss">
+	.code {
+		background: var(--color-dark-surface);
+		border: 1px solid var(--color-dark-border);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		box-shadow: var(--shadow-lg);
+		text-align: left;
+	}
+
+	.code__bar {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		padding: var(--space-3) var(--space-4);
+		background: var(--color-dark-bg);
+		border-bottom: 1px solid var(--color-dark-border);
+	}
+
+	.code__dots {
+		display: flex;
+		gap: 6px;
+
+		span {
+			width: 11px;
+			height: 11px;
+			border-radius: 50%;
+			background: var(--color-dark-border);
+		}
+	}
+
+	.code__filename {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-dark-muted);
+	}
+
+	.code__copy {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		margin-left: auto;
+		padding: 5px 10px;
+		font-size: var(--text-xs);
+		font-weight: 600;
+		color: var(--color-dark-muted);
+		background: transparent;
+		border: 1px solid var(--color-dark-border);
+		border-radius: var(--radius-sm);
+		cursor: pointer;
+		transition: color var(--transition-fast), border-color var(--transition-fast);
+
+		&:hover {
+			color: var(--color-dark-text);
+			border-color: var(--color-dark-muted);
+		}
+
+		&.is-copied {
+			color: #4ade80;
+			border-color: #4ade80;
+		}
+	}
+
+	.code__pre {
+		margin: 0;
+		padding: var(--space-5);
+		overflow-x: auto;
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		line-height: 1.7;
+		color: var(--color-dark-text);
+
+		code {
+			font-family: inherit;
+			white-space: pre;
+		}
+	}
+</style>
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+		btn.addEventListener('click', async () => {
+			const block = btn.closest('[data-code-block]');
+			const code = block?.querySelector('[data-code-content]')?.textContent ?? '';
+			const textEl = btn.querySelector<HTMLElement>('.code__copy-text');
+			const copied = btn.dataset.copied ?? 'Copied!';
+			const label = btn.dataset.label ?? 'Copy';
+			try {
+				await navigator.clipboard.writeText(code);
+				btn.classList.add('is-copied');
+				if (textEl) textEl.textContent = copied;
+				window.setTimeout(() => {
+					btn.classList.remove('is-copied');
+					if (textEl) textEl.textContent = label;
+				}, 1800);
+			} catch {
+				/* clipboard unavailable */
+			}
+		});
+	});
+</script>
